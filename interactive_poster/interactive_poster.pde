@@ -19,6 +19,7 @@ boolean page2 = false;
 boolean page3 = false;
 boolean page4 = false;
 
+//varibales for the circular buffer
 int indexNum = 10;
 float [] mousePos = new float [indexNum];
 int indexPos = 0;
@@ -32,7 +33,8 @@ void draw() {
   mousePos[indexPos] = mouseX;
   indexPos = (indexPos + 1) % indexNum;
   
-  println(mousePos);
+  // Here, the four buttons are created, and if the mouse is pressed on one of the buttons, another buttons with a different
+  // color is created instead. Also, a boolean monitors if a buttons is pressed or not. This might be usefull later.
   
   if (startpage == true) 
   {
@@ -48,6 +50,7 @@ void draw() {
         isPressed[i] = false;
       }
     }
+    //Here I am prepering for when we want to display the other pages. 
   } else if (page1 == true) {
   } else if (page2 == true) {
   } else if (page3 == true) {
