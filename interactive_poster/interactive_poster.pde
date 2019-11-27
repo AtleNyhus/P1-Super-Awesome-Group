@@ -1,5 +1,5 @@
 import processing.sound.*;
-sound clickButton;
+//sound clickButton;
 
 
 float [] buttonX = {100, 500, 100, 500};
@@ -19,12 +19,21 @@ boolean page2 = false;
 boolean page3 = false;
 boolean page4 = false;
 
+int indexNum = 10;
+float [] mousePos = new float [indexNum];
+int indexPos = 0;
+
 void setup() {
   size(640, 640);
 }
 
 void draw() {
-
+// small circular buffer that reads mouseX positions. This will be used when scrolling. 
+  mousePos[indexPos] = mouseX;
+  indexPos = (indexPos + 1) % indexNum;
+  
+  println(mousePos);
+  
   if (startpage == true) 
   {
     for (int i = 0; i <= myButtons.length-1; i++) 

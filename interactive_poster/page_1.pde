@@ -7,5 +7,5 @@ class page1 {
     y = y_;
   }
   void display() {
-    
+  }
 }
