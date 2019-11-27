@@ -1,0 +1,3 @@
+class page2 {
+  
+}
