@@ -1,10 +1,11 @@
 import processing.sound.*;
 //sound clickButton;
 
-
+float edgeCommon = 30; //Styrer afrundingen af edgesne for alle boksne
 float [] buttonX = {100, 500, 100, 500};
 float [] buttonY = {100, 100, 500, 500};
 float [] buttonR = {100, 100, 100, 100};
+float [] buttonEdge = {edgeCommon, edgeCommon, edgeCommon, edgeCommon};
 
 boolean [] isPressed = {false, false, false, false};
 float buttonR1 = 50;
@@ -40,7 +41,7 @@ void draw() {
   {
     for (int i = 0; i <= myButtons.length-1; i++) 
     {
-      myButtons[i] = new Button(buttonX[i], buttonY[i], buttonR[i], buttonR[i]);
+      myButtons[i] = new Button(buttonX[i], buttonY[i], buttonR[i], buttonR[i], buttonEdge[i]);
       if ( mousePressed && dist(mouseX, mouseY, myButtons[i].x, myButtons[i].y) < myButtons[i].r/2) 
       {
         myButtons[i].display(newColorButton);
