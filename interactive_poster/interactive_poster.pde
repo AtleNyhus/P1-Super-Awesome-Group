@@ -25,6 +25,15 @@ int indexNum = 10;
 float [] mousePos = new float [indexNum];
 int indexPos = 0;
 
+//menu
+float menuX = 200;
+float menuY = 50;
+float menuW = 200;
+float menuH = 10;
+float menuOffset = 10;
+menu menu = new menu(menuX, menuY, menuW, menuH, menuOffset);
+
+
 void setup() {
   size(640, 640);
 }
@@ -37,7 +46,7 @@ void draw() {
   // Here, the four buttons are created, and if the mouse is pressed on one of the buttons, another buttons with a different
   // color is created instead. Also, a boolean monitors if a buttons is pressed or not. This might be usefull later.
   
-  if (startpage == true) 
+  /*if (startpage == true) 
   {
     for (int i = 0; i <= myButtons.length-1; i++) 
     {
@@ -56,5 +65,11 @@ void draw() {
   } else if (page2 == true) {
   } else if (page3 == true) {
   } else if (page4 == true) {
-  }
+  }*/
+  
+  //The menu
+  //if(page1 == true || page2 == true || page3 == true || page4 == true){
+    background(0);
+  menu.show();
+  menu.dropdown();
 }
