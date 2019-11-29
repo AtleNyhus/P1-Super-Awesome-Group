@@ -41,7 +41,7 @@ void draw() {
 
 
   // small circular buffer that reads mouseX positions. This will be used when scrolling. 
-  mousePos[indexPos] = mouseX;
+  mousePos[indexPos] = mouseY;
   indexPos = (indexPos + 1) % indexNum;
 
   if (startpage == true) startPage();
@@ -58,5 +58,5 @@ void draw() {
     startpage = true;
   }
 
-  println(pages);
+  println(mousePos);
 }
