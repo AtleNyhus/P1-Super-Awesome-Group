@@ -47,8 +47,8 @@ void setup() {
 void draw() {
   background(255);
 
-  for (int i = 0; i < numberOfPages-1; i++) {
-    page[i] = new Page(0, 0);
+  for (int i = 0; i < numberOfPages; i++) {
+    page[i] = new Page(10, 200);
   }
 
   if (startpage) startPage();
