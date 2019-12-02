@@ -9,7 +9,9 @@ import at.mukprojects.imageloader.instagram.*;
 import at.mukprojects.imageloader.tumblr.*;
 
 import processing.sound.*;
-//sound clickButton;
+
+PImage test;
+
 
 //Theese three arrays hold the variables for the four buttons on the start page
 float [] buttonX = {100, 500, 100, 500};
@@ -22,6 +24,9 @@ boolean [] isPressed = {false, false, false, false};
 //Keeps track on wich page is loaded. 
 boolean [] pages = {false, false, false, false};
 boolean startpage = true;
+
+boolean isMouseReleased;
+boolean active;
 
 float buttonR1 = 50; 
 color buttonColor = color(255, 0, 0);
@@ -39,17 +44,20 @@ Page [] page = new Page [numberOfPages];
 
 void setup() {
   //size(1080, 1920);
-  size(540, 970);
+  size(1080, 1920);
   backButton = new Button(width/2, height/2, buttonR1, buttonR1);
-  // backButton.active = true;
-}
 
-void draw() {
-  background(255);
+  test = loadImage("scrolltest.png");
 
   for (int i = 0; i < numberOfPages; i++) {
-    page[i] = new Page(10, 200);
+    page[i] = new Page(0, 0, test);
   }
+}
+void draw() {
+
+  background(255);
+
+
 
   if (startpage) startPage();
   else if (pages[0]) { 
@@ -73,4 +81,12 @@ void draw() {
     }
     startpage = true;
   }
+}
+
+void mouseReleased () {
+isMouseReleased = false;
+}
+
+void mousePressed () {
+isMouseReleased = true;
 }
