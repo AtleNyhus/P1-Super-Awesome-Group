@@ -1,3 +1,13 @@
+import at.mukprojects.imageloader.*;
+import at.mukprojects.imageloader.file.*;
+import at.mukprojects.imageloader.flickr.*;
+import at.mukprojects.imageloader.gif.*;
+import at.mukprojects.imageloader.giphy.*;
+import at.mukprojects.imageloader.google.*;
+import at.mukprojects.imageloader.image.*;
+import at.mukprojects.imageloader.instagram.*;
+import at.mukprojects.imageloader.tumblr.*;
+
 import processing.sound.*;
 //sound clickButton;
 
@@ -22,30 +32,28 @@ Button [] myButtons = new Button [num];
 //initializes the button that takes us back to the startpage.
 Button backButton;
 
+Page page1 = new Page(500,100);
 
 
-//varibales for the circular buffer
-int indexNum = 10;
-float [] mousePos = new float [indexNum];
-int indexPos = 0;
 
 void setup() {
-  size(640, 640);
+  //size(1080, 1920);
+  size(540, 970);
   backButton = new Button(width/2, height/2, buttonR1, buttonR1);
   // backButton.active = true;
+  
 }
 
 void draw() {
-  background(0);
+  background(255);
 
-
-
-  // small circular buffer that reads mouseX positions. This will be used when scrolling. 
-  mousePos[indexPos] = mouseX;
-  indexPos = (indexPos + 1) % indexNum;
-
-  if (startpage == true) startPage();
-  else if (pages[0]) page1();
+page1.showPage();
+page1.slider();
+println(page1.y);
+println(page1.yspeed);
+/*
+  if (startpage) startPage();
+  else if (pages[0]) page1(); 
   else if (pages[1]) page2();
   else if (pages[2]) page3();
   else if (pages[3]) page4();
@@ -57,6 +65,5 @@ void draw() {
     }
     startpage = true;
   }
-
-  println(pages);
+  */
 }
