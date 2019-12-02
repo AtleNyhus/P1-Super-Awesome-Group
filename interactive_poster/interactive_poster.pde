@@ -1,5 +1,17 @@
+import at.mukprojects.imageloader.*;
+import at.mukprojects.imageloader.file.*;
+import at.mukprojects.imageloader.flickr.*;
+import at.mukprojects.imageloader.gif.*;
+import at.mukprojects.imageloader.giphy.*;
+import at.mukprojects.imageloader.google.*;
+import at.mukprojects.imageloader.image.*;
+import at.mukprojects.imageloader.instagram.*;
+import at.mukprojects.imageloader.tumblr.*;
+
 import processing.sound.*;
-//sound clickButton;
+
+PImage test;
+
 
 //Theese three arrays hold the variables for the four buttons on the start page
 float [] buttonX = {100, 500, 100, 500};
@@ -13,6 +25,9 @@ boolean [] isPressed = {false, false, false, false};
 boolean [] pages = {false, false, false, false};
 boolean startpage = true;
 
+boolean isMouseReleased;
+boolean active;
+
 float buttonR1 = 50; 
 color buttonColor = color(255, 0, 0);
 color newColorButton = color(255, 0, 255);
@@ -22,33 +37,42 @@ Button [] myButtons = new Button [num];
 //initializes the button that takes us back to the startpage.
 Button backButton;
 
+int numberOfPages = 4;
+Page [] page = new Page [numberOfPages];
 
 
-//varibales for the circular buffer
-int indexNum = 10;
-float [] mousePos = new float [indexNum];
-int indexPos = 0;
 
 void setup() {
-  size(640, 640);
+  //size(1080, 1920);
+  size(1080, 1920);
   backButton = new Button(width/2, height/2, buttonR1, buttonR1);
-  // backButton.active = true;
+
+  test = loadImage("scrolltest.png");
+
+  for (int i = 0; i < numberOfPages; i++) {
+    page[i] = new Page(0, 0, test);
+  }
 }
-
 void draw() {
-  background(0);
+
+  background(255);
 
 
 
-  // small circular buffer that reads mouseX positions. This will be used when scrolling. 
-  mousePos[indexPos] = mouseY;
-  indexPos = (indexPos + 1) % indexNum;
-
-  if (startpage == true) startPage();
-  else if (pages[0]) page1();
-  else if (pages[1]) page2();
-  else if (pages[2]) page3();
-  else if (pages[3]) page4();
+  if (startpage) startPage();
+  else if (pages[0]) { 
+    page[0].showPage();
+    page[0].slider();
+  } else if (pages[1]) { 
+    page[1].showPage(); 
+    page[1].slider();
+  } else if (pages[2]) { 
+    page[2].showPage(); 
+    page[2].slider();
+  } else if (pages[3] ) { 
+    page[3].showPage(); 
+    page[3].slider();
+  }
 
   backButton.display(buttonColor);
   if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
@@ -57,6 +81,14 @@ void draw() {
     }
     startpage = true;
   }
+}
 
-  println(mousePos);
+void mouseReleased () {
+isMouseReleased = false;
+}
+
+
+void mousePressed () {
+isMouseReleased = true;
+
 }
