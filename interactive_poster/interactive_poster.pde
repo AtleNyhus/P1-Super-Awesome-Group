@@ -51,7 +51,7 @@ page1.showPage();
 page1.slider();
 println(page1.y);
 println(page1.yspeed);
-/*
+
   if (startpage) startPage();
   else if (pages[0]) page1(); 
   else if (pages[1]) page2();
@@ -65,5 +65,5 @@ println(page1.yspeed);
     }
     startpage = true;
   }
-  */
+  
 }
