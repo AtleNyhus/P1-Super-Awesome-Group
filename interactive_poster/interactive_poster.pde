@@ -32,7 +32,8 @@ Button [] myButtons = new Button [num];
 //initializes the button that takes us back to the startpage.
 Button backButton;
 
-Page page1 = new Page(500,100);
+int numberOfPages = 4;
+Page [] page = new Page [numberOfPages];
 
 
 
@@ -41,22 +42,29 @@ void setup() {
   size(540, 970);
   backButton = new Button(width/2, height/2, buttonR1, buttonR1);
   // backButton.active = true;
-  
 }
 
 void draw() {
   background(255);
 
-page1.showPage();
-page1.slider();
-println(page1.y);
-println(page1.yspeed);
+  for (int i = 0; i < numberOfPages-1; i++) {
+    page[i] = new Page(0, 0);
+  }
 
   if (startpage) startPage();
-  else if (pages[0]) page1(); 
-  else if (pages[1]) page2();
-  else if (pages[2]) page3();
-  else if (pages[3]) page4();
+  else if (pages[0]) { 
+    page[0].showPage();
+    page[0].slider();
+  } else if (pages[1]) { 
+    page[1].showPage(); 
+    page[1].slider();
+  } else if (pages[2]) { 
+    page[2].showPage(); 
+    page[2].slider();
+  } else if (pages[3] ) { 
+    page[3].showPage(); 
+    page[3].slider();
+  }
 
   backButton.display(buttonColor);
   if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
@@ -65,5 +73,4 @@ println(page1.yspeed);
     }
     startpage = true;
   }
-  
 }
