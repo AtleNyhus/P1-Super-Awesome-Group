@@ -27,6 +27,7 @@ boolean startpage = true;
 
 boolean isMousePressed;
 boolean active;
+boolean isMouseClicked;
 
 float buttonR1 = 50; 
 color buttonColor = color(255, 0, 0);
@@ -82,6 +83,8 @@ void draw() {
     }
     startpage = true;
   }
+  //resets isMouseClicked
+  isMouseClicked = false;
 }
 
 void mouseReleased () {
@@ -91,4 +94,8 @@ isMousePressed = false;
 
 void mousePressed () {
 isMousePressed = true;
+}
+
+void mouseClicked () {
+  isMouseClicked = true;
 }
