@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 class page1 {
 
   float x; 
@@ -8,4 +9,8 @@ class page1 {
   }
   void display() {
   }
+=======
+void page1 () {
+  background(200);
+>>>>>>> Stashed changes
 }
