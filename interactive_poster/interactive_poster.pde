@@ -25,7 +25,7 @@ boolean [] isPressed = {false, false, false, false};
 boolean [] pages = {false, false, false, false};
 boolean startpage = true;
 
-boolean isMouseReleased;
+boolean isMousePressed;
 boolean active;
 
 float buttonR1 = 50; 
@@ -58,7 +58,7 @@ void draw() {
   background(255);
 
 
-
+//Controls what pages are displayed
   if (startpage) startPage();
   else if (pages[0]) { 
     page[0].showPage();
@@ -74,6 +74,7 @@ void draw() {
     page[3].slider();
   }
 
+  //This creates a button that sets the booleans to deload all pages and load the startpage
   backButton.display(buttonColor);
   if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
     for (int i = 0; i < num; i++) {
@@ -84,11 +85,10 @@ void draw() {
 }
 
 void mouseReleased () {
-isMouseReleased = false;
+isMousePressed = false;
 }
 
 
 void mousePressed () {
-isMouseReleased = true;
-
+isMousePressed = true;
 }
