@@ -64,7 +64,9 @@ void draw() {
 
 
   //Controls what pages are displayed
-  if (startpage) startPage();
+  if (startpage) { startPage();
+  boxShow();
+  }
   else if (pages[0]) { 
     page[0].showPage();
     page[0].slider();
