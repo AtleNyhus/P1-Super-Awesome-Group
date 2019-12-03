@@ -3,13 +3,10 @@ class Page {
   float y;
   float yspeed;
   PImage a;
-  float maxSpeed = 6;
+  float maxSpeed = 10;
   int lastIndexPos;
 
-  //varibales for the circular buffer
-  int indexNum = 10;
-  float [] mousePos = new float [indexNum];
-  int indexPos = 0;
+
 
 
   Page(float x_, float y_, PImage a_) {
