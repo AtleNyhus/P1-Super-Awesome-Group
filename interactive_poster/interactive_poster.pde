@@ -12,6 +12,10 @@ import processing.sound.*;
 
 PImage test;
 
+//varibales for the circular buffer
+int indexNum = 2;
+float [] mousePos = new float [indexNum];
+int indexPos = 0;
 
 //Theese three arrays hold the variables for the four buttons on the start page
 float [] buttonX = {100, 500, 100, 500};
@@ -59,7 +63,7 @@ void draw() {
   background(255);
 
 
-//Controls what pages are displayed
+  //Controls what pages are displayed
   if (startpage) startPage();
   else if (pages[0]) { 
     page[0].showPage();
@@ -83,17 +87,22 @@ void draw() {
     }
     startpage = true;
   }
+
+  if (!isMousePressed) {
+    for (int i = 0; i < mousePos.length; i++) {
+      mousePos[i] = mouseY;
+    }
+  }
   //resets isMouseClicked
   isMouseClicked = false;
 }
-
 void mouseReleased () {
-isMousePressed = false;
+  isMousePressed = false;
 }
 
 
 void mousePressed () {
-isMousePressed = true;
+  isMousePressed = true;
 }
 
 void mouseClicked () {
