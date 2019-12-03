@@ -47,6 +47,7 @@ Page [] page = new Page [numberOfPages];
 
 
 
+
 void setup() {
   //size(1080, 1920);
   size(1080, 1920);
@@ -79,6 +80,34 @@ void draw() {
     page[3].slider();
   }
 
+  //Controls the Bolleans for wich page should be shown
+  
+  for (int i = 0; i < isPressed.length; i++) {
+    if (isPressed[i]) {
+      pages[i] = true; 
+      startpage = false;
+    }
+  }
+  
+  /*
+  if (isPressed[0] == true) {
+   pages[0] = true;
+   startpage = false;
+   }
+   if (isPressed[1] == true) {
+   pages[1] = true;
+   startpage = false;
+   }
+   if (isPressed[2] == true) {
+   pages[2] = true;
+   startpage = false;
+   }
+   if (isPressed[3] == true) {
+   pages[3] = true;
+   startpage = false;
+   }
+   */
+
   //This creates a button that sets the booleans to deload all pages and load the startpage
   backButton.display(buttonColor);
   if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
@@ -87,7 +116,7 @@ void draw() {
     }
     startpage = true;
   }
-
+  // if the mouse is not pressed
   if (!isMousePressed) {
     for (int i = 0; i < mousePos.length; i++) {
       mousePos[i] = mouseY;
