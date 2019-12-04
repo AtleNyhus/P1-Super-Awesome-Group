@@ -41,6 +41,7 @@ Button [] myButtons = new Button [num];
 
 //initializes the button that takes us back to the startpage.
 Button backButton;
+Boolean backShow = true;
 
 int numberOfPages = 4;
 Page [] page = new Page [numberOfPages];
@@ -62,12 +63,18 @@ void draw() {
 
   background(255);
 
+  if (show) { //Textbox gets shown on the background only and switches startpage to true when turned off. Dissapears after first use.
+    boxShow();
+    startpage = false; }
+      else
+     {
+    startpage = true;
+  }
 
   //Controls what pages are displayed
-  if (startpage) { startPage();
-  boxShow();
-  }
-  else if (pages[0]) { 
+  if (startpage) { 
+    startPage();
+  } else if (pages[0]) { 
     page[0].showPage();
     page[0].slider();
   } else if (pages[1]) { 
@@ -82,7 +89,9 @@ void draw() {
   }
 
   //This creates a button that sets the booleans to deload all pages and load the startpage
-  backButton.display(buttonColor);
+  if (startpage){backButton.display(buttonColor);
+  }
+  
   if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
     for (int i = 0; i < num; i++) {
       pages[i] = false;
