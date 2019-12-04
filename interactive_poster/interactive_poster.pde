@@ -88,25 +88,6 @@ void draw() {
       startpage = false;
     }
   }
-  
-  /*
-  if (isPressed[0] == true) {
-   pages[0] = true;
-   startpage = false;
-   }
-   if (isPressed[1] == true) {
-   pages[1] = true;
-   startpage = false;
-   }
-   if (isPressed[2] == true) {
-   pages[2] = true;
-   startpage = false;
-   }
-   if (isPressed[3] == true) {
-   pages[3] = true;
-   startpage = false;
-   }
-   */
 
   //This creates a button that sets the booleans to deload all pages and load the startpage
   backButton.display(buttonColor);
