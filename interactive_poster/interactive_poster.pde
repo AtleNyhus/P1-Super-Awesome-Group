@@ -27,7 +27,7 @@ boolean [] isPressed = {false, false, false, false};
 
 //Keeps track on wich page is loaded. 
 boolean [] pages = {false, false, false, false};
-boolean startpage = true;
+boolean startpage = false;
 
 boolean isMousePressed;
 boolean active;
@@ -66,10 +66,6 @@ void draw() {
 
   if (show) { //Textbox gets shown on the background only and switches startpage to true when turned off. Dissapears after first use.
     boxShow();
-    startpage = false; }
-      else
-     {
-    startpage = true;
   }
 
   //Controls what pages are displayed
