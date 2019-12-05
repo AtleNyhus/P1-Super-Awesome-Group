@@ -15,6 +15,7 @@ class Page {
     a = a_;
   }
   void showPage() {
+    imageMode(CORNER);
     image(a, x, y);
     
   }

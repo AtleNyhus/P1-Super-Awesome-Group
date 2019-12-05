@@ -46,7 +46,10 @@ Boolean backShow = true;
 int numberOfPages = 4;
 Page [] page = new Page [numberOfPages];
 
-
+//Quiz
+Quiz quiz;
+int ellipseSize = 25;
+float ellipseX = 62.5;
 
 void setup() {
   //size(1080, 1920);
@@ -58,23 +61,26 @@ void setup() {
   for (int i = 0; i < numberOfPages; i++) {
     page[i] = new Page(0, 0, test);
   }
+
+  quiz = new Quiz(ellipseX, ellipseSize);
 }
+
 void draw() {
 
   background(255);
 
-
-
   if (show) { //Textbox gets shown on the background only and switches startpage to true when turned off. Dissapears after first use.
     boxShow();
-     }
-      
+  }
+
 
   //Controls what pages are displayed
   if (startpage) { 
     startPage();
-  } else if (pages[0]) { 
+  } else if (pages[0]) {
     page[0].showPage();
+    quiz.Body();
+    quiz.Interact();
     page[0].slider();
   } else if (pages[1]) { 
     page[1].showPage(); 
@@ -88,9 +94,10 @@ void draw() {
   }
 
   //This creates a button that sets the booleans to deload all pages and load the startpage
-  if (startpage){backButton.display(buttonColor);
+  if (startpage) {
+    backButton.display(buttonColor);
   }
-  
+
   if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
     for (int i = 0; i < num; i++) {
       pages[i] = false;
