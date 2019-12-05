@@ -1,3 +1,5 @@
+
+
 import at.mukprojects.imageloader.*;
 import at.mukprojects.imageloader.file.*;
 import at.mukprojects.imageloader.flickr.*;
@@ -69,6 +71,16 @@ void draw() {
   }
 
   //Controls what pages are displayed
+  
+  for (int i = 0; i < page.length; i++) {
+    if (pages[i]) {
+      page[i].showPage();
+      page[i].slider();
+    }
+  }
+  
+/*
+  //Controls what pages are displayed
   if (startpage) { 
     startPage();
   } else if (pages[0]) { 
@@ -84,9 +96,9 @@ void draw() {
     page[3].showPage(); 
     page[3].slider();
   }
-
+*/
   //Controls the Bolleans for wich page should be shown
-  
+
   for (int i = 0; i < isPressed.length; i++) {
     if (isPressed[i]) {
       pages[i] = true; 
@@ -95,9 +107,10 @@ void draw() {
   }
 
   //This creates a button that sets the booleans to deload all pages and load the startpage
-  if (startpage){backButton.display(buttonColor);
+  if (startpage) {
+    backButton.display(buttonColor);
   }
-  
+
   if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
     for (int i = 0; i < num; i++) {
       pages[i] = false;
