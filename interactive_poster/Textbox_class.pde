@@ -22,11 +22,11 @@ void boxShow() {
     fill(0);
     text("Gå videre", x2-20, y2);
     introText = loadImage("bla bla.jpg");
-    imageMode(CENTER);
     image(introText, x1, y1);
   }
 
   if (mousePressed && mouseX > x2-size/2 && mouseX < x2+size/2 && mouseY > y2-size/2 && mouseY < y2+size/2) {
     show = false;
+          startpage = true;
   }
 }
