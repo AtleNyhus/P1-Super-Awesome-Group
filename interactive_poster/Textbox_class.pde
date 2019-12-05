@@ -28,5 +28,6 @@ void boxShow() {
 
   if (mousePressed && mouseX > x2-size/2 && mouseX < x2+size/2 && mouseY > y2-size/2 && mouseY < y2+size/2) {
     show = false;
+    startpage = true;
   }
 }
