@@ -71,32 +71,33 @@ void draw() {
   }
 
   //Controls what pages are displayed
-  
+
+  if (startpage) startPage();
   for (int i = 0; i < page.length; i++) {
     if (pages[i]) {
       page[i].showPage();
       page[i].slider();
     }
   }
-  
-/*
+
+  /*
   //Controls what pages are displayed
-  if (startpage) { 
-    startPage();
-  } else if (pages[0]) { 
-    page[0].showPage();
-    page[0].slider();
-  } else if (pages[1]) { 
-    page[1].showPage(); 
-    page[1].slider();
-  } else if (pages[2]) { 
-    page[2].showPage(); 
-    page[2].slider();
-  } else if (pages[3] ) { 
-    page[3].showPage(); 
-    page[3].slider();
-  }
-*/
+   if (startpage) { 
+   startPage();
+   } else if (pages[0]) { 
+   page[0].showPage();
+   page[0].slider();
+   } else if (pages[1]) { 
+   page[1].showPage(); 
+   page[1].slider();
+   } else if (pages[2]) { 
+   page[2].showPage(); 
+   page[2].slider();
+   } else if (pages[3] ) { 
+   page[3].showPage(); 
+   page[3].slider();
+   }
+   */
   //Controls the Bolleans for wich page should be shown
 
   for (int i = 0; i < isPressed.length; i++) {
@@ -117,7 +118,7 @@ void draw() {
     }
     startpage = true;
   }
-  // if the mouse is not pressed
+  // if the mouse is not pressed, they mousePos array is filled with the current positon
   if (!isMousePressed) {
     for (int i = 0; i < mousePos.length; i++) {
       mousePos[i] = mouseY;
@@ -125,6 +126,7 @@ void draw() {
   }
   //resets isMouseClicked
   isMouseClicked = false;
+  println(startpage);
 }
 void mouseReleased () {
   isMousePressed = false;
