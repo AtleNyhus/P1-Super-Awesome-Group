@@ -58,6 +58,7 @@ Boolean [] whatQuiz = {false, false, false, false, false, false, false, false, f
 int [] correctAnswers = {1, 2, 0, 2, 0, 1, 1, 2, 0, 1};
 int quizIndex;
 
+
 //Next button variables
 float rectX = 800;
 float rectY = 500;

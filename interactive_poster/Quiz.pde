@@ -14,9 +14,8 @@ class Quiz {
   boolean stopScore = true; //Made so you cannot just spam the same button to get infinite points
   boolean outOfBounds = false; //So the array does not go over its capacity
 
-  String answer1 = "Det er en fugl";
-  String answer2 = "Det er en flyver";
-  String answer3 = "Det er et exoskelet";
+  String [] answers = loadStrings("answers.txt");
+
 
   int score;
 
@@ -44,6 +43,7 @@ class Quiz {
       ellipse(ellipseX, i, ellipseSize, ellipseSize);
     }
 
+    printArray(answers);
 
     fill(0);
     textSize(20);
@@ -81,11 +81,11 @@ class Quiz {
       outOfBounds = true;
     }
 
-
+    for(int i = 0; i < 
     if (quizIndex == 0) { //The answers are written in the programme
-      text(answer1, ellipseX+incrementLeft, ellipseYStart);
-      text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
-      text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
+      text(answers[0], ellipseX+incrementLeft, ellipseYStart);
+      text(answers[1], ellipseX+incrementLeft, ellipseYStart+incrementDown);
+      text(answers[2], ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
     }
 
     if (quizIndex == 1) {
@@ -93,25 +93,25 @@ class Quiz {
       text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
       text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
     }
-    
+
     if (quizIndex == 2) {
       text(answer1, ellipseX+incrementLeft, ellipseYStart);
       text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
       text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
     }
-    
+
     if (quizIndex == 3) {
       text(answer1, ellipseX+incrementLeft, ellipseYStart);
       text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
       text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
     }
-    
+
     if (quizIndex == 4) {
       text(answer1, ellipseX+incrementLeft, ellipseYStart);
       text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
       text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
     }
-    
+
     if (quizIndex == 5) {
       text(answer1, ellipseX+incrementLeft, ellipseYStart);
       text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
@@ -119,38 +119,38 @@ class Quiz {
     }
 
 
-      //Depending on which circle gets clicked on there is draw another on top and not the others.
-      for (int i = 0; i < circleChecker.length; i++) { 
-        if (circleChecker [i] && blankReset == true) {
-          fill(0);
-          ellipse(ellipseX, miniEllipseY[i], ellipseSize/1.5, ellipseSize/1.5);
-        } else {
-          circleChecker[i] = false;
-        }
-      }
-
-      //The black ellipse positions. Corresponds to the other circles y-positions.
-      for (int i = 0; i < 3; i++) { 
-        miniEllipseY[i] = i*incrementDown+ellipseYStart;
+    //Depending on which circle gets clicked on there is draw another on top and not the others.
+    for (int i = 0; i < circleChecker.length; i++) { 
+      if (circleChecker [i] && blankReset == true) {
+        fill(0);
+        ellipse(ellipseX, miniEllipseY[i], ellipseSize/1.5, ellipseSize/1.5);
+      } else {
+        circleChecker[i] = false;
       }
     }
 
-
-    void correct(int a) { //Gives +1 score if the right answer is pressed.
-      if (stopScore == true && isMouseClicked == true && dist(mouseX, mouseY, ellipseX, miniEllipseY[a]) < ellipseSize/2) {
-        score++;
-        fill(0, 0, 255);
-        ellipse(ellipseX, miniEllipseY[a], ellipseSize/1.5, ellipseSize/1.5);
-        stopScore = false;
-      }
-    }
-
-    void nextQuiz() {
-      if (isMouseClicked && toggle == false) { //If mouse is clicked the loop gets deloaded and quizIndex is incremented by 1, which is put into whatQuiz that controls which quiz question is on.
-        for (int i = 0; i < whatQuiz.length; i++) { //Deloads quizpages first.
-          whatQuiz[i] = false;
-        }
-        whatQuiz[quizIndex] = true;
-      }
+    //The black ellipse positions. Corresponds to the other circles y-positions.
+    for (int i = 0; i < 3; i++) { 
+      miniEllipseY[i] = i*incrementDown+ellipseYStart;
     }
   }
+
+
+  void correct(int a) { //Gives +1 score if the right answer is pressed.
+    if (stopScore == true && isMouseClicked == true && dist(mouseX, mouseY, ellipseX, miniEllipseY[a]) < ellipseSize/2) {
+      score++;
+      fill(0, 0, 255);
+      ellipse(ellipseX, miniEllipseY[a], ellipseSize/1.5, ellipseSize/1.5);
+      stopScore = false;
+    }
+  }
+
+  void nextQuiz() {
+    if (isMouseClicked && toggle == false) { //If mouse is clicked the loop gets deloaded and quizIndex is incremented by 1, which is put into whatQuiz that controls which quiz question is on.
+      for (int i = 0; i < whatQuiz.length; i++) { //Deloads quizpages first.
+        whatQuiz[i] = false;
+      }
+      whatQuiz[quizIndex] = true;
+    }
+  }
+}
