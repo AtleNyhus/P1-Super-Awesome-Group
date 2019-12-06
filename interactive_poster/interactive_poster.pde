@@ -1,3 +1,5 @@
+
+
 import at.mukprojects.imageloader.*;
 import at.mukprojects.imageloader.file.*;
 import at.mukprojects.imageloader.flickr.*;
@@ -57,6 +59,7 @@ int [] correctAnswers = {1, 2, 0, 2, 0, 1, 1, 2, 0, 1};
 int quizIndex;
 
 
+
 void setup() {
   //size(1080, 1920);
   size(1080, 1920);
@@ -86,62 +89,85 @@ void draw() {
 
 
   //Controls what pages are displayed
-  if (startpage) { 
-    startPage();
-  } else if (pages[0]) {
-    page[0].showPage();
-    page[0].slider();
-  } else if (pages[1]) { 
-    page[1].showPage(); 
-    page[1].slider();
-  } else if (pages[2]) { 
-    page[2].showPage(); 
-    page[2].slider();
-  } else if (pages[3] ) { 
-    page[3].showPage(); 
 
-    for (int i = 0; i < quiz.length; i++) {
-      if (whatQuiz[i]) {
-        quiz[i].Body();
-        quiz[i].Interact();
+    if (startpage) startPage();
+  for (int i = 0; i < page.length; i++) {
+    if (pages[i]) {
+      page[i].showPage();
+      page[i].slider();
+      if ( i = 3) {
+        for (int i = 0; i < quiz.length; i++) {
+          if (whatQuiz[i]) {
+            quiz[i].Body();
+            quiz[i].Interact();
+          }
+
+          NextButton.display(buttonColor);
+        }
       }
-
-      NextButton.display(buttonColor);
     }
   }
 
+  /*
+  //Controls what pages are displayed
+   if (startpage) { 
+   startPage();
+   } else if (pages[0]) { 
+   page[0].showPage();
+   page[0].slider();
+   } else if (pages[1]) { 
+   page[1].showPage(); 
+   page[1].slider();
+   } else if (pages[2]) { 
+   page[2].showPage(); 
+   page[2].slider();
+   } else if (pages[3] ) { 
+   page[3].showPage(); 
+   page[3].slider();
+   }
+   */
+  //Controls the Bolleans for wich page should be shown
 
-  //This creates a button that sets the booleans to deload all pages and load the startpage
-  if(!show){
-  backButton.display(buttonColor);
+  for (int i = 0; i < isPressed.length; i++) {
+    if (isPressed[i]) {
+      pages[i] = true; 
+      startpage = false;
+    }
   }
 
-  if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
+  //This creates a button that sets the booleans to deload all pages and load the startpage
+  if (!show) {
+    backButton.display(buttonColor);
+
+    if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
     for (int i = 0; i < num; i++) {
       pages[i] = false;
     }
     startpage = true;
   }
 
-  if (!mousePressed) {
-    for (int i = 0; i < mousePos.length; i++) {
-      mousePos[i] = mouseY;
+
+    if (!mousePressed) {
+      // if the mouse is not pressed, they mousePos array is filled with the current positon
+        for (int i = 0; i < mousePos.length; i++) {
+        mousePos[i] = mouseY;
+      }
     }
+    //resets isMouseClicked
+    isMouseClicked = false;
+    println(startpage);
   }
-  //resets isMouseClicked
-  isMouseClicked = false;
-}
 
 
-void mouseReleased () {
-  isMousePressed = false;
-}
+  void mouseReleased () {
+    isMousePressed = false;
+  }
 
 
-void mousePressed () {
-  isMousePressed = true;
-}
+  void mousePressed () {
+    isMousePressed = true;
+  }
 
-void mouseClicked () {
-  isMouseClicked = true;
-}
+  void mouseClicked () {
+    isMouseClicked = true;
+  }

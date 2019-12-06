@@ -20,21 +20,36 @@ void startPage () {
   }
 
   //Controls the Bolleans for wich page should be shown
-  if (isPressed[0] == true) {
-    pages[0] = true;
-    startpage = false;
+  for (int i = 0; i < pages.length; i++) {
+    if (isPressed[i]) {
+      pages[i] = true;
+      startpage = false;
+      if( i = 3) whatQuiz[0] = true;
+    }
+
   }
-  if (isPressed[1] == true) {
-    pages[1] = true;
-    startpage = false;
-  }
-  if (isPressed[2] == true) {
-    pages[2] = true;
-    startpage = false;
-  }
-  if (isPressed[3] == true) {
-    pages[3] = true;
-    startpage = false;
-    whatQuiz[0] = true;
-  }
+  /*
+ if (startpage) { 
+   startPage();
+   //Controls the Bolleans for wich page should be shown
+   if (isPressed[0] == true) {
+   pages[0] = true;
+   startpage = false;
+   }
+   if (isPressed[1] == true) {
+   pages[1] = true;
+   startpage = false;
+   }
+   if (isPressed[2] == true) {
+   pages[2] = true;
+   startpage = false;
+   }
+   if (isPressed[3] == true) {
+   pages[3] = true;
+   startpage = false;
+   }
+   if (startpage) { 
+   startPage();
+   }
+   */
 }
