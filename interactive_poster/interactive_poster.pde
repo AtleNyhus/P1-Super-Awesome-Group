@@ -1,5 +1,3 @@
-
-
 import at.mukprojects.imageloader.*;
 import at.mukprojects.imageloader.file.*;
 import at.mukprojects.imageloader.flickr.*;
@@ -60,7 +58,7 @@ int [] correctAnswers = {1, 2, 0, 2, 0, 1, 1, 2, 0, 1};
 int quizIndex;
 
 //Next button variables
-float rectX = 500;
+float rectX = 800;
 float rectY = 500;
 float rectSize = 50;
 
@@ -78,11 +76,8 @@ void setup() {
   }
 
   for (int i = 0; i < quiz.length; i++) {
-    quiz [i] = new Quiz(ellipseX, ellipseYStart, ellipseSize);
+    quiz [i] = new Quiz(ellipseX, ellipseYStart, ellipseSize, rectX, rectY, rectSize);
   }
-
-
-  NextButton = new Quiz(rectX, rectY, rectSize);
 }
 
 void draw() {
@@ -108,9 +103,7 @@ void draw() {
           if (whatQuiz[j]) {
             quiz[j].Body();
             quiz[j].Interact();
-
-            NextButton.button();    
-            NextButton.correct(correctAnswers[j]);
+            quiz[j].correct(correctAnswers[j]);
           }
         }
       }
