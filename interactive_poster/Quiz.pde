@@ -1,6 +1,8 @@
 class Quiz {
   int Resultat = 0;
-  
+
+  Boolean [] test1 = {false, false, false}; 
+
   float ellipseY1 = 125;
 
   float [] miniEllipseY = new float [3];
@@ -30,14 +32,23 @@ class Quiz {
     text("score " + score, 300, 110);
   }
 
-  void Interact() {
+
+
+  void Interact() { //Checks what button you click on. Turns off when you click within one of the buttons. Sets 1 of the buttons to be true.
     if (toggle) {
       for (int u = 0; u < 3; u++) { //You can click on each circle to fill it with another smaller black circle
         if (mousePressed && dist(mouseX, mouseY, ellipseX, miniEllipseY[u]) < ellipseSize/2) {
-          fill(0);
-          ellipse(ellipseX, miniEllipseY[u], ellipseSize/1.5, ellipseSize/1.5);
           toggle = false;
+          test1 [u] = true;
         }
+      }
+    }
+
+
+    for (int i = 0; i < test1.length; i++) { //Depending on which circle gets clicked on there is draw another on top and not the others.
+      if (test1 [i]) {
+        fill(0);
+        ellipse(ellipseX, miniEllipseY[i], ellipseSize/1.5, ellipseSize/1.5);
       }
     }
 
@@ -46,8 +57,17 @@ class Quiz {
       score = 2;
     }
 
-    for (int i = 0; i < 3; i++) { //Array gets filled with values
+    for (int i = 0; i < 3; i++) { //The black ellipse positions. Corresponds to the other circles y-positions.
       miniEllipseY[i] = i*40*3+125*3;
+    }
+  }
+
+
+  void correct(int a) {
+    if (mousePressed && dist(mouseX, mouseY, ellipseX, miniEllipseY[a]) < ellipseSize/2) {
+      score++;
+      fill(0,0,255);
+      ellipse(ellipseX, miniEllipseY[a], ellipseSize/1.5, ellipseSize/1.5);
     }
   }
 }

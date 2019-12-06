@@ -30,4 +30,13 @@ class Button {
   void display() {
     image(image, x, y);
   }
+  
+  void nextQuiz(){
+    for(int i = 0; i < whatQuiz.length; i++){ //Deloads quizpages first.
+      whatQuiz[i] = false;
+    }
+    quizIndex++;
+    whatQuiz[quizIndex] = true;
+    
+  }
 }

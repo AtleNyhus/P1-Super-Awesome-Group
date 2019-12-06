@@ -35,5 +35,6 @@ void startPage () {
   if (isPressed[3] == true) {
     pages[3] = true;
     startpage = false;
+    whatQuiz[0] = true;
   }
 }

@@ -41,15 +41,21 @@ Button [] myButtons = new Button [num];
 
 //initializes the button that takes us back to the startpage.
 Button backButton;
+Button NextButton;
+
 Boolean backShow = true;
 
 int numberOfPages = 4;
 Page [] page = new Page [numberOfPages];
 
 //Quiz
-Quiz quiz;
+Quiz [] quiz = new Quiz [10];
 int ellipseSize = 25;
 float ellipseX = 62.5;
+Boolean [] whatQuiz = {false, false, false, false, false, false, false, false, false, false};
+int [] correctAnswers = {1, 2, 0, 2, 0, 1, 1, 2, 0, 1};
+int quizIndex;
+
 
 void setup() {
   //size(1080, 1920);
@@ -62,7 +68,11 @@ void setup() {
     page[i] = new Page(0, 0, test);
   }
 
-  quiz = new Quiz(ellipseX, ellipseSize);
+  for (int i = 0; i < quiz.length; i++) {
+    quiz [i] = new Quiz(ellipseX, ellipseSize);
+  }
+
+  NextButton = new Button(500, 500, buttonR1, buttonR1);
 }
 
 void draw() {
@@ -74,13 +84,12 @@ void draw() {
   }
 
 
+
   //Controls what pages are displayed
   if (startpage) { 
     startPage();
   } else if (pages[0]) {
     page[0].showPage();
-    quiz.Body();
-    quiz.Interact();
     page[0].slider();
   } else if (pages[1]) { 
     page[1].showPage(); 
@@ -90,12 +99,21 @@ void draw() {
     page[2].slider();
   } else if (pages[3] ) { 
     page[3].showPage(); 
-    page[3].slider();
+
+    for (int i = 0; i < quiz.length; i++) {
+      if (whatQuiz[i]) {
+        quiz[i].Body();
+        quiz[i].Interact();
+      }
+
+      NextButton.display(buttonColor);
+    }
   }
 
+
   //This creates a button that sets the booleans to deload all pages and load the startpage
-  if (startpage) {
-    backButton.display(buttonColor);
+  if(!show){
+  backButton.display(buttonColor);
   }
 
   if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
@@ -105,7 +123,7 @@ void draw() {
     startpage = true;
   }
 
-  if (!isMousePressed) {
+  if (!mousePressed) {
     for (int i = 0; i < mousePos.length; i++) {
       mousePos[i] = mouseY;
     }
@@ -113,6 +131,8 @@ void draw() {
   //resets isMouseClicked
   isMouseClicked = false;
 }
+
+
 void mouseReleased () {
   isMousePressed = false;
 }
