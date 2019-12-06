@@ -43,7 +43,7 @@ Button [] myButtons = new Button [num];
 
 //initializes the button that takes us back to the startpage.
 Button backButton;
-Button NextButton;
+Quiz NextButton;
 
 Boolean backShow = true;
 
@@ -54,9 +54,15 @@ Page [] page = new Page [numberOfPages];
 Quiz [] quiz = new Quiz [10];
 int ellipseSize = 25;
 float ellipseX = 62.5;
+int ellipseYStart = 375;
 Boolean [] whatQuiz = {false, false, false, false, false, false, false, false, false, false};
 int [] correctAnswers = {1, 2, 0, 2, 0, 1, 1, 2, 0, 1};
 int quizIndex;
+
+//Next button variables
+float rectX = 500;
+float rectY = 500;
+float rectSize = 50;
 
 
 
@@ -72,10 +78,11 @@ void setup() {
   }
 
   for (int i = 0; i < quiz.length; i++) {
-    quiz [i] = new Quiz(ellipseX, ellipseSize);
+    quiz [i] = new Quiz(ellipseX, ellipseYStart, ellipseSize);
   }
 
-  NextButton = new Button(500, 500, buttonR1, buttonR1);
+
+  NextButton = new Quiz(rectX, rectY, rectSize);
 }
 
 void draw() {
@@ -90,23 +97,28 @@ void draw() {
 
   //Controls what pages are displayed
 
-    if (startpage) startPage();
+  if (startpage) startPage();
   for (int i = 0; i < page.length; i++) {
     if (pages[i]) {
       page[i].showPage();
       page[i].slider();
-      if ( i = 3) {
-        for (int i = 0; i < quiz.length; i++) {
-          if (whatQuiz[i]) {
-            quiz[i].Body();
-            quiz[i].Interact();
-          }
 
-          NextButton.display(buttonColor);
+      if ( i == 3) {
+        for (int j = 0; j < quiz.length; j++) {
+          if (whatQuiz[j]) {
+            quiz[j].Body();
+            quiz[j].Interact();
+
+            NextButton.button();    
+            NextButton.correct(correctAnswers[j]);
+          }
         }
       }
     }
   }
+
+
+
 
   /*
   //Controls what pages are displayed
@@ -140,34 +152,34 @@ void draw() {
     backButton.display(buttonColor);
 
     if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
-    for (int i = 0; i < num; i++) {
-      pages[i] = false;
+      for (int i = 0; i < num; i++) {
+        pages[i] = false;
+      }
+      startpage = true;
     }
-    startpage = true;
-  }
 
 
     if (!mousePressed) {
       // if the mouse is not pressed, they mousePos array is filled with the current positon
-        for (int i = 0; i < mousePos.length; i++) {
+      for (int i = 0; i < mousePos.length; i++) {
         mousePos[i] = mouseY;
       }
     }
+
     //resets isMouseClicked
     isMouseClicked = false;
-    println(startpage);
   }
+}
+
+void mouseReleased () {
+  isMousePressed = false;
+}
 
 
-  void mouseReleased () {
-    isMousePressed = false;
-  }
+void mousePressed () {
+  isMousePressed = true;
+}
 
-
-  void mousePressed () {
-    isMousePressed = true;
-  }
-
-  void mouseClicked () {
-    isMouseClicked = true;
-  }
+void mouseClicked () {
+  isMouseClicked = true;
+}

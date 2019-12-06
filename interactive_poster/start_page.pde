@@ -24,7 +24,7 @@ void startPage () {
     if (isPressed[i]) {
       pages[i] = true;
       startpage = false;
-      if( i = 3) whatQuiz[0] = true;
+      if( i == 3) whatQuiz[0] = true;
     }
 
   }

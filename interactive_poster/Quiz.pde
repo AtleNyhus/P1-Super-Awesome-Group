@@ -1,19 +1,30 @@
 class Quiz {
-  int Resultat = 0;
 
   Boolean [] test1 = {false, false, false}; 
 
-  float ellipseY1 = 125;
+  int ellipseYStart;
+  int increment = 120;
+  int endPoint = 675;
 
   float [] miniEllipseY = new float [3];
   boolean toggle = true; //toggle used to turn off that you can click on more than 1 answer.
-  int result;
-  float score;
+ 
 
-  Quiz(float temp_ellipseX, int temp_ellipseSize) {
+  int score;
 
+  //Next button variables
+  float rectX, rectY, rectSize;
+
+  Quiz(float temp_ellipseX, int temp_ellipseYStart, int temp_ellipseSize) {
+    ellipseYStart = temp_ellipseYStart;
     ellipseX = temp_ellipseX;
     ellipseSize = temp_ellipseSize;
+  }
+
+  Quiz(float temp_rectX, float temp_rectY, float temp_rectSize) {
+    rectX = temp_rectX;
+    rectY = temp_rectY;
+    rectSize = temp_rectSize;
   }
 
   void Body() {
@@ -22,7 +33,7 @@ class Quiz {
     fill(255);
     rect(540, 200, width/1.1, height/8);
 
-    for (int i = 125*3; i < 225*3; i = i + 40*3) {
+    for (int i = ellipseYStart; i < endPoint; i = i + increment) { //Draws empty circles
       ellipse(ellipseX, i, ellipseSize, ellipseSize);
     }
 
@@ -33,6 +44,17 @@ class Quiz {
   }
 
 
+  void button() {
+    fill(255, 0, 0);
+    rectMode(CENTER);
+    rect(rectX, rectY, rectSize, rectSize);
+    if(isMouseClicked == true && mouseX > rectX-rectSize/2 && mouseX < rectX + rectSize/2 && mouseY > rectY-rectSize/2 && mouseY < rectY + rectSize/2) { //hitbox for next button so you can go to the next question.
+      quizIndex++;
+      
+    }
+  }
+
+
 
   void Interact() { //Checks what button you click on. Turns off when you click within one of the buttons. Sets 1 of the buttons to be true.
     if (toggle) {
@@ -40,6 +62,7 @@ class Quiz {
         if (mousePressed && dist(mouseX, mouseY, ellipseX, miniEllipseY[u]) < ellipseSize/2) {
           toggle = false;
           test1 [u] = true;
+          
         }
       }
     }
@@ -53,21 +76,27 @@ class Quiz {
     }
 
 
-    if (mousePressed && dist(mouseX, mouseY, ellipseX, miniEllipseY[0]) < ellipseSize/2) {
-      score = 2;
-    }
 
     for (int i = 0; i < 3; i++) { //The black ellipse positions. Corresponds to the other circles y-positions.
-      miniEllipseY[i] = i*40*3+125*3;
+      miniEllipseY[i] = i*increment+ellipseYStart;
     }
   }
 
 
-  void correct(int a) {
+  void correct(int a) { 
     if (mousePressed && dist(mouseX, mouseY, ellipseX, miniEllipseY[a]) < ellipseSize/2) {
       score++;
-      fill(0,0,255);
+      fill(0, 0, 255);
       ellipse(ellipseX, miniEllipseY[a], ellipseSize/1.5, ellipseSize/1.5);
+    }
+  }
+
+  void nextQuiz() {
+    if (isMouseClicked) { //If mouse is clicked the loop gets deloaded and quizIndex is incremented by 1, which is put into whatQuiz that controls which quiz question is on.
+      for (int i = 0; i < whatQuiz.length; i++) { //Deloads quizpages first.
+        whatQuiz[i] = false;
+      }
+      whatQuiz[quizIndex] = true;
     }
   }
 }
