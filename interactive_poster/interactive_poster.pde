@@ -95,8 +95,8 @@ void draw() {
   }
 
   //This creates a button that sets the booleans to deload all pages and load the startpage
-  if (startpage){backButton.display(buttonColor);
-  }
+  backButton.display(buttonColor);
+  
   
   if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
     for (int i = 0; i < num; i++) {
