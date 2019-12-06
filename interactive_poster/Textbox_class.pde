@@ -8,7 +8,7 @@ int y2 = y1-430;
 int size = 50;
 
 int edge = 50;
-boolean show = true;
+boolean show = true; //Boolean used to toggle whether the box should be shown or not
 
 PImage introText;
 
@@ -27,7 +27,6 @@ void boxShow() {
 
   if (mousePressed && mouseX > x2-size/2 && mouseX < x2+size/2 && mouseY > y2-size/2 && mouseY < y2+size/2) {
     show = false;
-
     startpage = true;
 
   }

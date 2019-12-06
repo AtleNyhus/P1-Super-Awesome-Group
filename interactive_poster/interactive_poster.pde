@@ -8,6 +8,7 @@ import at.mukprojects.imageloader.image.*;
 import at.mukprojects.imageloader.instagram.*;
 import at.mukprojects.imageloader.tumblr.*;
 
+
 import processing.sound.*;
 
 PImage test;
@@ -89,7 +90,6 @@ void draw() {
   }
 
 
-
   //Controls what pages are displayed
 
   if (startpage) startPage();
@@ -104,6 +104,7 @@ void draw() {
             quiz[j].Body();
             quiz[j].Interact();
             quiz[j].correct(correctAnswers[j]);
+            
           }
         }
       }
@@ -131,8 +132,8 @@ void draw() {
    page[3].slider();
    }
    */
-  //Controls the Bolleans for wich page should be shown
-
+   
+  //Controls the Bolleans for which page should be shown
   for (int i = 0; i < isPressed.length; i++) {
     if (isPressed[i]) {
       pages[i] = true; 
