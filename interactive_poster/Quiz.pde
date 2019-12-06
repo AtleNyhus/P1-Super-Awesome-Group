@@ -8,7 +8,6 @@ class Quiz {
 
   float [] miniEllipseY = new float [3];
   boolean toggle = true; //toggle used to turn off that you can click on more than 1 answer.
- 
 
   int score;
 
@@ -48,9 +47,8 @@ class Quiz {
     fill(255, 0, 0);
     rectMode(CENTER);
     rect(rectX, rectY, rectSize, rectSize);
-    if(isMouseClicked == true && mouseX > rectX-rectSize/2 && mouseX < rectX + rectSize/2 && mouseY > rectY-rectSize/2 && mouseY < rectY + rectSize/2) { //hitbox for next button so you can go to the next question.
+    if (isMouseClicked == true && mouseX > rectX-rectSize/2 && mouseX < rectX + rectSize/2 && mouseY > rectY-rectSize/2 && mouseY < rectY + rectSize/2) { //hitbox for next button so you can go to the next question.
       quizIndex++;
-      
     }
   }
 
@@ -62,7 +60,6 @@ class Quiz {
         if (mousePressed && dist(mouseX, mouseY, ellipseX, miniEllipseY[u]) < ellipseSize/2) {
           toggle = false;
           test1 [u] = true;
-          
         }
       }
     }
@@ -95,6 +92,7 @@ class Quiz {
     if (isMouseClicked) { //If mouse is clicked the loop gets deloaded and quizIndex is incremented by 1, which is put into whatQuiz that controls which quiz question is on.
       for (int i = 0; i < whatQuiz.length; i++) { //Deloads quizpages first.
         whatQuiz[i] = false;
+        println(whatQuiz[i]);
       }
       whatQuiz[quizIndex] = true;
     }
