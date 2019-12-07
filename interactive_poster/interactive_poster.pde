@@ -54,8 +54,8 @@ Quiz [] quiz = new Quiz [10];
 int ellipseSize = 25;
 float ellipseX = 62.5;
 int ellipseYStart = 375;
-Boolean [] whatQuiz = {false, false, false, false, false, false, false, false, false, false};
-int [] correctAnswers = {1, 2, 0, 2, 0, 1, 1, 2, 0, 1};
+boolean [] whatQuiz = {false, false, false, false, false, false, false, false, false, false};
+int [] correctAnswers = {2, 1, 0, 2, 0, 1, 1, 2, 0, 1};
 int quizIndex;
 
 
@@ -101,10 +101,11 @@ void draw() {
 
       if ( i == 3) {
         for (int j = 0; j < quiz.length; j++) {
-          if (whatQuiz[j]) {
+          if (whatQuiz[j]) { //Not sure why this is working
             quiz[j].Body();
             quiz[j].Interact();
             quiz[j].correct(correctAnswers[j]);
+            
             
           }
         }
@@ -112,7 +113,7 @@ void draw() {
     }
   }
 
-
+printArray(whatQuiz);
 
 
   /*

@@ -8,16 +8,21 @@ class Quiz {
   int endPoint = 675;
   int multiplyer = 2;
   int triple = 3; //Used to shift the answers array to the next spot. Changed by quizIndex.
+  int textSize = 20;
+  int questionBoxX = 540;
+  int questionBoxY = 200;
+  int questionBoxW = 980;
+  int questionBoxH = 240;
 
   float [] miniEllipseY = new float [3];
   boolean toggle = true; //toggle used to turn off that you can click on more than 1 answer.
   boolean blankReset = true; //Resets the quiz page back so there is no black circles
   boolean stopScore = true; //Made so you cannot just spam the same button to get infinite points
   boolean outOfBounds = false; //So the array does not go over its capacity
-  boolean correct = false; //used to check if an answer is correct and draw the green circle
+  
 
-  String [] answers = loadStrings("answers.txt");
-
+  String [] answers = loadStrings("answers.txt"); //Pulls text from a textfile and loads each line into an array
+  String [] questions = loadStrings("questions.txt"); //Questions from the textfile
 
   int score;
 
@@ -38,18 +43,20 @@ class Quiz {
     //The question box
     stroke(0);
     fill(255);
-    rect(540, 200, width/1.1, height/8);
+    rect(questionBoxX, questionBoxY, questionBoxW, questionBoxH); //fix magic numbers
 
     //The clickable circles for answers
     for (int i = ellipseYStart; i < endPoint; i = i + incrementDown) { //Draws empty circles
       ellipse(ellipseX, i, ellipseSize, ellipseSize);
     }
 
-
-
-    fill(0);
-    textSize(20);
-    text("score " + score, 300, 110);
+    //Score box
+    if (quizIndex >= 9) { 
+      rect(340, 4*110, 100, 50); //fix magic numbers
+      fill(0);
+      textSize(textSize);
+      text("score " + score, 300, 4*110);
+    }
   }
 
 
@@ -77,7 +84,7 @@ class Quiz {
       correctAnswers[0] = correctAnswers[quizIndex]; //follows quizIndex for the correct answer.
       blankReset = false;
       stopScore = true;
-      println(quizIndex);
+      
     }
 
     if (quizIndex >= 9) {
@@ -87,9 +94,13 @@ class Quiz {
     for (int i = 0; i < quiz.length; i++) { //When quizIndex is equals to i it shows the text bellow. The loop goes from 0 to 9
       if (quizIndex == i) { //The answers are written in the programme
         //fill(255); turn on for white text
+        textSize(textSize);
         text(answers[0+(quizIndex*triple)], ellipseX+incrementLeft, ellipseYStart);//answers[0] gets added with a multiplication of quizIndex times 3. So quizIndex = 1*3 changes answers[0] to answers[3]
         text(answers[1+(quizIndex*triple)], ellipseX+incrementLeft, ellipseYStart+incrementDown);
         text(answers[2+(quizIndex*triple)], ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
+        fill(0);
+        textSize(textSize+5);
+        text(questions[0+quizIndex], questionBoxX-400, questionBoxY);
       }
     }
 
@@ -129,7 +140,7 @@ class Quiz {
     //Depending on which circle gets clicked on there is draw another on top and not the others.
     for (int i = 0; i < circleChecker.length; i++) { 
       if (circleChecker [i] && blankReset == true) {
-        fill(255,0,0); //The circle is red and is left there or overwritten by the green circle further on line 154.
+        fill(255, 0, 0); //The circle is red and is left there or overwritten by the green circle further on line 154.
         ellipse(ellipseX, miniEllipseY[i], ellipseSize/1.5, ellipseSize/1.5);
       } else {
         circleChecker[i] = false;
@@ -146,21 +157,20 @@ class Quiz {
   void correct(int a) { //Gives +1 score if the right answer is pressed.
     if (stopScore == true && isMouseClicked == true && dist(mouseX, mouseY, ellipseX, miniEllipseY[a]) < ellipseSize/2) {
       score++;
-      correct = true;
       stopScore = false;
     } 
-    if (correct && toggle == false) {
+    if (toggle == false) {
       fill(0, 255, 0);
       ellipse(ellipseX, miniEllipseY[a], ellipseSize/1.5, ellipseSize/1.5);
     }
   }
-
-  void nextQuiz() {
+  /*
+  void nextQuiz() { //Is not used in the programme
     if (isMouseClicked && toggle == false) { //If mouse is clicked the loop gets deloaded and quizIndex is incremented by 1, which is put into whatQuiz that controls which quiz question is on.
       for (int i = 0; i < whatQuiz.length; i++) { //Deloads quizpages first.
         whatQuiz[i] = false;
       }
       whatQuiz[quizIndex] = true;
     }
-  }
+  }*/
 }
