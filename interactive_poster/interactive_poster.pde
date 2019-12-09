@@ -196,6 +196,7 @@ void draw() {
   }
 
 
+
   // if the mouse is not pressed, they mousePos array is filled with the current positon
   if (!mousePressed) {
     for (int i = 0; i < mousePos.length; i++) {
@@ -208,13 +209,8 @@ void draw() {
 
   //resets isMouseClicked
   isMouseClicked = false;
-  
-  println(mouseX);
-  println(isMouseClicked);
-  println(mouseY);
-  
-}
 
+}
 void mouseReleased () {
   isMousePressed = false;
 }
