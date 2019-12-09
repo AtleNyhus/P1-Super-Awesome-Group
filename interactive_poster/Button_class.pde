@@ -13,22 +13,45 @@ class Button {
     r = r_;
     r1 = r1_;
   }
-
+  /*
   Button(float x_, float y_, float r_, float r1_, PImage image_) {
-    x = x_;
-    y = y_;
-    r = r_;
-    r1 = r1_;
-    image = image_;
-  }
-
+   x = x_;
+   y = y_;
+   r = r_;
+   r1 = r1_;
+   image = image_;
+   }
+   */
   void display(color c) {
+    noStroke();
     fill(c);
-    rectMode(CENTER);
+    rectMode(CORNER);
     rect(x, y, r, r1);
   }
+
+  void home () {
+    fill(255,0,0);
+    rectMode(CENTER);
+    rect(x, y, r, r1);
+    if ( mousePressed && dist(mouseX, mouseY, this.x, this.y) < this.r/2) {
+      for (int i = 0; i < num; i++) {
+        pages[i] = false;
+      }
+      startpage = true;
+    }
+  }
+
+
+  /*
   void display() {
+
     image(image, x, y);
   }
   
+   rectMode(CORNER);
+   image(image, x, y);
+   }
+   }
+   */
+
 }

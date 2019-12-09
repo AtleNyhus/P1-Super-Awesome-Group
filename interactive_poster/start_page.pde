@@ -1,20 +1,22 @@
 void startPage () {
+  
+  image(pictures[0], 0, 0);
   // creates the four buttons, and ads a hitbox to them.
-  for (int i = 0; i <= myButtons.length-1; i++) 
+  for (int i = 0; i < myButtons.length; i++) 
   {
-    myButtons[i] = new Button(buttonX[i], buttonY[i], buttonR[i], buttonR[i]);
+    myButtons[i] = new Button(buttonX[i], buttonY[i], buttonR1[i], buttonR2[i]);
     //myButtons[i].active = true; //This sets all the "myButtons" to the true state (means they can be displayed)
-    if ( mousePressed && dist(mouseX, mouseY, myButtons[i].x, myButtons[i].y) < myButtons[i].r/2) 
+    //if ( mousePressed && dist(mouseX, mouseY, myButtons[i].x, myButtons[i].y) < myButtons[i].r/2) 
+    if(mousePressed && mouseX > myButtons[i].x && mouseX < myButtons[i].x + myButtons[i].r && mouseY > myButtons[i].y && mouseY < myButtons[i].y + myButtons[i].r1)
     {
       //this is displayed if the mouse is pressde on a button
       myButtons[i].display(newColorButton);
-      //isPressed[i] = true;
     } else {
       //this is displayed all the time 
       myButtons[i].display(buttonColor);
       isPressed[i] = false;
     }
-    if (isMouseClicked == true && dist(mouseX, mouseY, myButtons[i].x, myButtons[i].y) < myButtons[i].r/2) {
+    if (isMouseClicked && mouseX > myButtons[i].x && mouseX < myButtons[i].x + myButtons[i].r && mouseY > myButtons[i].y && mouseY < myButtons[i].y + myButtons[i].r1) {
       isPressed[i] = true;
     }
   }
