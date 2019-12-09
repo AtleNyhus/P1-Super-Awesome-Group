@@ -36,7 +36,7 @@ boolean [] isPressed = {false, false, false, false};
 
 //Keeps track on wich page is loaded. 
 boolean [] pages = {false, false, false, false};
-boolean startpage = false;
+boolean startpage = true;
 
 boolean isMousePressed;
 boolean active;
@@ -91,6 +91,8 @@ void setup() {
   for (int i = 0; i < numberOfPages; i++) {
     page[i] = new Page(0, 0, pictures[i]);
   }
+  test = loadImage("Page2.png");
+page[3] = new Page(0,0, test);
 
   for (int i = 0; i < quiz.length; i++) {
     quiz [i] = new Quiz(ellipseX, ellipseYStart, ellipseSize, rectX, rectY, rectSize);
