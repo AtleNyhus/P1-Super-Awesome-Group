@@ -44,9 +44,14 @@ class Button {
 
   /*
   void display() {
+
+    image(image, x, y);
+  }
+  
    rectMode(CORNER);
    image(image, x, y);
    }
    }
    */
+
 }
