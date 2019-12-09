@@ -69,8 +69,8 @@ int quizIndex;
 
 
 //Next button variables
-float rectX = 800;
-float rectY = 500;
+
+
 float rectSize = 50;
 
 
@@ -78,7 +78,9 @@ float rectSize = 50;
 void setup() {
 
   size(540, 960);
-  backButton = new Button(100, 100, buttonR, buttonR);
+  float backButtonX = width * 0.1; 
+  float backButtonY = height * 0.05;
+  backButton = new Button(backButtonX, backButtonY, buttonR, buttonR);
 
   StartPage = loadImage("startpage.png");
   StartPage.resize(width, height);
@@ -93,6 +95,9 @@ void setup() {
   }
   test = loadImage("Page2.png");
 page[3] = new Page(0,0, test);
+
+float rectX = width * 0.7;
+float rectY = height * 0.5;
 
   for (int i = 0; i < quiz.length; i++) {
     quiz [i] = new Quiz(ellipseX, ellipseYStart, ellipseSize, rectX, rectY, rectSize);
@@ -135,6 +140,7 @@ void draw() {
     if (pages[i]) {
       page[i].showPage();
       page[i].slider();
+      backButton.home();
 
       if ( i == 3) {
         for (int j = 0; j < quiz.length; j++) {
@@ -207,7 +213,7 @@ void draw() {
   }
 
   //This creates a button that sets the booleans to deload all pages and load the startpage
-  if (!show) backButton.home();
+  //if (!show) backButton.home();
 
   //resets isMouseClicked
   isMouseClicked = false;
