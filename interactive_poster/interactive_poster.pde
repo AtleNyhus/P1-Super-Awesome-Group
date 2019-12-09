@@ -58,17 +58,18 @@ int [] correctAnswers = {2, 1, 0, 2, 0, 1, 1, 2, 0, 1};
 int quizIndex;
 
 float maxScroll [] = new float [numberOfPages];
-
+boolean isSliding;
 //Next button variables
 float rectX = 800;
 float rectY = 500;
 float rectSize = 50;
 
-int scaleFactor = 2;
+int scaleFactor = 1;
 
 void setup() {
+  fullScreen();
 
-fullScreen();
+  //fullScreen();
   backButton = new Button(100, 100, buttonR, buttonR);
 
   StartPage = loadImage("startpage.png");
@@ -78,7 +79,7 @@ fullScreen();
     maxScroll[i] = pictures[i].height/scaleFactor;
     pictures[i].resize(pictures[i].width/scaleFactor, pictures[i].height/scaleFactor);
   }
-
+  pictures[1].resize(width, height);
   // pictures[1].resize(width, pictures[1].height);
   //pictures[2].resize(width, pictures[1].height);
 
@@ -116,6 +117,12 @@ fullScreen();
 void draw() {
 
   background(255);
+  // if the mouse is not pressed, they mousePos array is filled with the current positon
+  if (!mousePressed) {
+    for (int i = 0; i < mousePos.length; i++) {
+      mousePos[i] = mouseY;
+    }
+  }
 
   if (show) { //Textbox gets shown on the background only and switches startpage to true when turned off. Dissapears after first use.
     boxShow();
@@ -143,29 +150,8 @@ void draw() {
   }
 
 
-  /*
-  //Controls what pages are displayed
-   if (startpage) { 
-   startPage();
-   } else if (pages[0]) { 
-   page[0].showPage();
-   page[0].slider();
-   } else if (pages[1]) { 
-   page[1].showPage(); 
-   page[1].slider();
-   } else if (pages[2]) { 
-   page[2].showPage(); 
-   page[2].slider();
-   } else if (pages[3] ) { 
-   page[3].showPage(); 
-   page[3].slider();
-   }
-   */
 
   //Controls the Bolleans for which page should be shown
-
-
-
   for (int i = 0; i < isPressed.length; i++) {
     if (isPressed[i]) {
       pages[i] = true; 
@@ -184,39 +170,37 @@ void draw() {
   }
 
 
-  if (!mousePressed) {
+  if (mousePressed) {
     // if the mouse is not pressed, they mousePos array is filled with the current positon
     for (int i = 0; i < mousePos.length; i++) {
       mousePos[i] = mouseY;
+      isSliding = true;
     }
   }
 
 
 
-  // if the mouse is not pressed, they mousePos array is filled with the current positon
-  if (!mousePressed) {
-    for (int i = 0; i < mousePos.length; i++) {
-      mousePos[i] = mouseY;
-    }
-  }
+
 
   //This creates a button that sets the booleans to deload all pages and load the startpage
   if (!show) backButton.home();
 
   //resets isMouseClicked
   isMouseClicked = false;
-  
-  println(isMouseClicked);
 }
+
 void mouseReleased () {
-  isMousePressed = false;
+  isMouseClicked = true;
+  isSliding = false;
 }
 
 
 void mousePressed () {
-  isMousePressed = true;
+  isMouseClicked = false;
 }
 
+/*
 void mouseClicked () {
-  isMouseClicked = true;
-}
+ isMouseClicked = true;
+ }
+ */
