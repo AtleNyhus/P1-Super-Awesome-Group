@@ -1,13 +1,3 @@
-import at.mukprojects.imageloader.*;
-import at.mukprojects.imageloader.file.*;
-import at.mukprojects.imageloader.flickr.*;
-import at.mukprojects.imageloader.gif.*;
-import at.mukprojects.imageloader.giphy.*;
-import at.mukprojects.imageloader.google.*;
-import at.mukprojects.imageloader.image.*;
-import at.mukprojects.imageloader.instagram.*;
-import at.mukprojects.imageloader.tumblr.*;
-
 
 import processing.sound.*;
 
@@ -78,7 +68,7 @@ int scaleFactor = 2;
 
 void setup() {
 
-  size(540, 960);
+fullScreen();
   backButton = new Button(100, 100, buttonR, buttonR);
 
   StartPage = loadImage("startpage.png");
@@ -215,6 +205,8 @@ void draw() {
 
   //resets isMouseClicked
   isMouseClicked = false;
+  
+  println(isMouseClicked);
 }
 void mouseReleased () {
   isMousePressed = false;
