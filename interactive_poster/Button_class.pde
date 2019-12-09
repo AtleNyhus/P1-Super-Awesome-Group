@@ -36,6 +36,7 @@ class Button {
     if ( mousePressed && dist(mouseX, mouseY, this.x, this.y) < this.r/2) {
       for (int i = 0; i < num; i++) {
         pages[i] = false;
+        page[i].y = 0;
       }
       startpage = true;
     }
