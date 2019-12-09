@@ -12,7 +12,7 @@ import at.mukprojects.imageloader.tumblr.*;
 import processing.sound.*;
 
 PImage test;
-
+PImage StartPage;
 
 int numOfPics = 4;
 //The different pictures used in "pages"
@@ -24,10 +24,11 @@ float [] mousePos = new float [indexNum];
 int indexPos = 0;
 
 //Theese three arrays hold the variables for the four buttons on the start page
-float [] buttonX =  {58, 565, 60, 570};
-float [] buttonY =  {770, 770, 1850, 1850};
-float [] buttonR1 = {450, 465, 442, 465};
-float [] buttonR2 = {820, 820, 820, 820};
+int numB=4;
+float [] buttonX = new float [numB];
+float [] buttonY = new float [numB];
+float [] buttonR1 = new float [numB];
+float [] buttonR2 = new float [numB];
 
 float buttonR = 50;
 //Checks if the buttons is pressed
@@ -76,12 +77,16 @@ float rectSize = 50;
 
 void setup() {
 
-  size(1080, 1920);
+  size(540, 960);
   backButton = new Button(100, 100, buttonR, buttonR);
 
-  test = loadImage("scrolltest.png");
-  pictures[0] = loadImage("Page0.png");
-  pictures[1] = loadImage("Page1.png");
+  StartPage = loadImage("startpage.png");
+  StartPage.resize(width, height);
+  for (int i = 0; i < pages.length - 1; i++) {
+
+    pictures[i] = loadImage("Page"+i+".png");
+    pictures[i].resize(width, height);
+  }
 
   for (int i = 0; i < numberOfPages; i++) {
     page[i] = new Page(0, 0, pictures[i]);
@@ -90,6 +95,26 @@ void setup() {
   for (int i = 0; i < quiz.length; i++) {
     quiz [i] = new Quiz(ellipseX, ellipseYStart, ellipseSize, rectX, rectY, rectSize);
   }
+buttonX[0] = width * 0.054;
+buttonX[1] = width * 0.52;
+buttonX[2] = width * 0.054;
+buttonX[3] = width * 0.526;
+
+buttonY[0] = height * 0.4;
+buttonY[1] = height * 0.4;
+buttonY[2] = height * 0.693;
+buttonY[3] = height *0.693;
+
+buttonR1[0] = width * 0.413;
+buttonR1[1] = width * 0.433;
+buttonR1[2] = width * 0.413;
+buttonR1[3] = width * 0.433;
+
+buttonR2[0] = height * 0.193;
+buttonR2[1] = height * 0.197;
+buttonR2[2] = height * 0.193;
+buttonR2[3] = height * 0.197;
+
 }
 
 void draw() {
@@ -120,9 +145,6 @@ void draw() {
       }
     }
   }
-
-
-  printArray(whatQuiz);
 
 
   /*
@@ -186,6 +208,11 @@ void draw() {
 
   //resets isMouseClicked
   isMouseClicked = false;
+  
+  println(mouseX);
+  println(isMouseClicked);
+  println(mouseY);
+  
 }
 
 void mouseReleased () {
