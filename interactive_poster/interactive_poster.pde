@@ -13,6 +13,7 @@ import processing.sound.*;
 
 PImage test;
 
+
 int numOfPics = 4;
 //The different pictures used in "pages"
 PImage [] pictures = new PImage [numOfPics];
@@ -80,9 +81,10 @@ void setup() {
 
   test = loadImage("scrolltest.png");
   pictures[0] = loadImage("Page0.png");
+  pictures[1] = loadImage("Page1.png");
 
   for (int i = 0; i < numberOfPages; i++) {
-    page[i] = new Page(0, 0, test);
+    page[i] = new Page(0, 0, pictures[i]);
   }
 
   for (int i = 0; i < quiz.length; i++) {
@@ -113,8 +115,6 @@ void draw() {
             quiz[j].Body();
             quiz[j].Interact();
             quiz[j].correct(correctAnswers[j]);
-            
-            
           }
         }
       }
@@ -122,7 +122,7 @@ void draw() {
   }
 
 
-printArray(whatQuiz);
+  printArray(whatQuiz);
 
 
   /*
@@ -143,7 +143,7 @@ printArray(whatQuiz);
    page[3].slider();
    }
    */
-   
+
   //Controls the Bolleans for which page should be shown
 
 
@@ -156,45 +156,36 @@ printArray(whatQuiz);
   }
 
 
-  //This creates a button that sets the booleans to deload all pages and load the startpage
-  if (!show) {
-    backButton.display(buttonColor);
 
-    if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
-      for (int i = 0; i < num; i++) {
-        pages[i] = false;
-      }
-      startpage = true;
+
+  if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
+    for (int i = 0; i < num; i++) {
+      pages[i] = false;
     }
+    startpage = true;
+  }
 
 
-    if (!mousePressed) {
-      // if the mouse is not pressed, they mousePos array is filled with the current positon
-      for (int i = 0; i < mousePos.length; i++) {
-        mousePos[i] = mouseY;
-      }
+  if (!mousePressed) {
+    // if the mouse is not pressed, they mousePos array is filled with the current positon
+    for (int i = 0; i < mousePos.length; i++) {
+      mousePos[i] = mouseY;
+    }
+  }
 
-  
+
   // if the mouse is not pressed, they mousePos array is filled with the current positon
   if (!mousePressed) {
     for (int i = 0; i < mousePos.length; i++) {
       mousePos[i] = mouseY;
-
     }
-
-    //resets isMouseClicked
-    isMouseClicked = false;
   }
 
-    //This creates a button that sets the booleans to deload all pages and load the startpage
-  if(!show) backButton.home();
-  
+  //This creates a button that sets the booleans to deload all pages and load the startpage
+  if (!show) backButton.home();
+
   //resets isMouseClicked
   isMouseClicked = false;
-
-  
-  
-
 }
 
 void mouseReleased () {
