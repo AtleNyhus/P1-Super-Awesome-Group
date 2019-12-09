@@ -11,6 +11,7 @@ void startPage () {
     {
       //this is displayed if the mouse is pressde on a button
       myButtons[i].display(newColorButton);
+      println("click");
     } else {
       //this is displayed all the time 
       myButtons[i].display(buttonColor);
