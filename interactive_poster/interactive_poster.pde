@@ -113,8 +113,6 @@ void draw() {
             quiz[j].Body();
             quiz[j].Interact();
             quiz[j].correct(correctAnswers[j]);
-            
-            
           }
         }
       }
@@ -122,7 +120,7 @@ void draw() {
   }
 
 
-printArray(whatQuiz);
+  printArray(whatQuiz);
 
 
   /*
@@ -143,7 +141,7 @@ printArray(whatQuiz);
    page[3].slider();
    }
    */
-   
+
   //Controls the Bolleans for which page should be shown
 
 
@@ -174,27 +172,24 @@ printArray(whatQuiz);
         mousePos[i] = mouseY;
       }
 
-  
-  // if the mouse is not pressed, they mousePos array is filled with the current positon
-  if (!mousePressed) {
-    for (int i = 0; i < mousePos.length; i++) {
-      mousePos[i] = mouseY;
 
+      // if the mouse is not pressed, they mousePos array is filled with the current positon
+      if (!mousePressed) {
+        for (int i = 0; i < mousePos.length; i++) {
+          mousePos[i] = mouseY;
+        }
+
+        //resets isMouseClicked
+        isMouseClicked = false;
+      }
+
+      //This creates a button that sets the booleans to deload all pages and load the startpage
+      if (!show) backButton.home();
+
+      //resets isMouseClicked
+      isMouseClicked = false;
     }
-
-    //resets isMouseClicked
-    isMouseClicked = false;
   }
-
-    //This creates a button that sets the booleans to deload all pages and load the startpage
-  if(!show) backButton.home();
-  
-  //resets isMouseClicked
-  isMouseClicked = false;
-
-  
-  
-
 }
 
 void mouseReleased () {
