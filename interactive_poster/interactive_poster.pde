@@ -14,16 +14,22 @@ import processing.sound.*;
 
 PImage test;
 
+int numOfPics = 4;
+//The different pictures used in "pages"
+PImage [] pictures = new PImage [numOfPics];
+
 //varibales for the circular buffer
 int indexNum = 2;
 float [] mousePos = new float [indexNum];
 int indexPos = 0;
 
 //Theese three arrays hold the variables for the four buttons on the start page
-float [] buttonX = {100, 500, 100, 500};
-float [] buttonY = {100, 100, 500, 500};
-float [] buttonR = {100, 100, 100, 100};
+float [] buttonX =  {58, 565, 60, 570};
+float [] buttonY =  {770, 770, 1850, 1850};
+float [] buttonR1 = {450, 465, 442, 465};
+float [] buttonR2 = {820, 820, 820, 820};
 
+float buttonR = 50;
 //Checks if the buttons is pressed
 boolean [] isPressed = {false, false, false, false};
 
@@ -35,9 +41,10 @@ boolean isMousePressed;
 boolean active;
 boolean isMouseClicked;
 
-float buttonR1 = 50; 
-color buttonColor = color(255, 0, 0);
-color newColorButton = color(255, 0, 255);
+
+color buttonColor = color(255, 0, 0, 0);
+color newColorButton = color(255, 100);
+color backButtonColor = color(255, 255, 0);
 int num = 4;
 Button [] myButtons = new Button [num];
 
@@ -52,11 +59,12 @@ Page [] page = new Page [numberOfPages];
 
 
 void setup() {
-  //size(1080, 1920);
+
   size(1080, 1920);
-  backButton = new Button(width/2, height/2, buttonR1, buttonR1);
+  backButton = new Button(100, 100, buttonR, buttonR);
 
   test = loadImage("scrolltest.png");
+  pictures[0] = loadImage("Page0.png");
 
   for (int i = 0; i < numberOfPages; i++) {
     page[i] = new Page(0, 0, test);
@@ -80,24 +88,6 @@ void draw() {
     }
   }
 
-  /*
-  //Controls what pages are displayed
-   if (startpage) { 
-   startPage();
-   } else if (pages[0]) { 
-   page[0].showPage();
-   page[0].slider();
-   } else if (pages[1]) { 
-   page[1].showPage(); 
-   page[1].slider();
-   } else if (pages[2]) { 
-   page[2].showPage(); 
-   page[2].slider();
-   } else if (pages[3] ) { 
-   page[3].showPage(); 
-   page[3].slider();
-   }
-   */
   //Controls the Bolleans for wich page should be shown
 
   for (int i = 0; i < isPressed.length; i++) {
@@ -107,24 +97,22 @@ void draw() {
     }
   }
 
-  //This creates a button that sets the booleans to deload all pages and load the startpage
-  backButton.display(buttonColor);
 
-  if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
-    for (int i = 0; i < num; i++) {
-      pages[i] = false;
-    }
-    startpage = true;
-  }
+  
   // if the mouse is not pressed, they mousePos array is filled with the current positon
-  if (!isMousePressed) {
+  if (!mousePressed) {
     for (int i = 0; i < mousePos.length; i++) {
       mousePos[i] = mouseY;
     }
   }
+    //This creates a button that sets the booleans to deload all pages and load the startpage
+  if(!show) backButton.home();
+  
   //resets isMouseClicked
   isMouseClicked = false;
-  println(startpage);
+
+  
+  
 }
 void mouseReleased () {
   isMousePressed = false;

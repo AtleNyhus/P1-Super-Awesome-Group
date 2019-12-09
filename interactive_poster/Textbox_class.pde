@@ -14,7 +14,7 @@ PImage introText;
 
 void boxShow() {
   if (show) {
-    rectMode(CENTER);
+    rectMode(CORNER);
 
     fill(255);
     rect(x1, y1, w1, h1, edge);

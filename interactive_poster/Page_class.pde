@@ -21,12 +21,14 @@ class Page {
 
     
   }
-  
+  /*
   void startPage () {
   // creates the four buttons, and ads a hitbox to them.
+  image(a,x,y);
+  
   for (int i = 0; i <= myButtons.length-1; i++) 
   {
-    myButtons[i] = new Button(buttonX[i], buttonY[i], buttonR[i], buttonR[i]);
+    myButtons[i] = new Button(buttonX[i], buttonY[i], buttonR1[i], buttonR2[i]);
     //myButtons[i].active = true; //This sets all the "myButtons" to the true state (means they can be displayed)
     if ( mousePressed && dist(mouseX, mouseY, myButtons[i].x, myButtons[i].y) < myButtons[i].r/2) 
     {
@@ -45,7 +47,7 @@ class Page {
 
 
 }
-
+*/
 
 
   void slider() { 
