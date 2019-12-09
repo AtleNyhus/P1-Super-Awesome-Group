@@ -3,7 +3,7 @@ class Page {
   float y;
   float yspeed;
   PImage a;
-  float maxSpeed = 10;
+  float maxSpeed = 20;
   int lastIndexPos;
 
 
@@ -50,7 +50,7 @@ class Page {
 */
 
 
-  void slider() { 
+  void slider(float max) { 
     // "isMousePressed" is tied to the "mousePressed" and "mouseReleased" functions 
     if (isMousePressed) {
       // small circular buffer that reads mouseX positions. 
@@ -66,7 +66,9 @@ class Page {
       if (yspeed > maxSpeed) yspeed = maxSpeed;
       
       //makes sure the app do not scroll out of bounds
-      if (y+yspeed < 0 || y+yspeed >= a.height) y = y + yspeed;
+      if (this.y + yspeed <= 0 && this.y + yspeed >= -max + height) this.y = this.y + yspeed;
+      println(this.y);
+      
     }
   }
 }
