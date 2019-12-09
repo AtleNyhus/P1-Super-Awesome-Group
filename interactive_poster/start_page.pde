@@ -1,6 +1,6 @@
 void startPage () {
   
-  image(pictures[0], 0, 0);
+  image(StartPage, 0, 0);
   // creates the four buttons, and ads a hitbox to them.
   for (int i = 0; i < myButtons.length; i++) 
   {
