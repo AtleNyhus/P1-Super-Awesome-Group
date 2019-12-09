@@ -67,8 +67,6 @@ class Page {
       
       //makes sure the app do not scroll out of bounds
       if (this.y + yspeed <= 0 && this.y + yspeed >= -max + height) this.y = this.y + yspeed;
-      println(this.y);
-      
     }
   }
 }
