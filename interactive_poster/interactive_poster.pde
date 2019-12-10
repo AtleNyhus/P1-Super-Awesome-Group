@@ -51,9 +51,9 @@ Page [] page = new Page [numberOfPages];
 
 //Quiz
 Quiz [] quiz = new Quiz [6];
-int ellipseSize = 50;
+int ellipseSize = 70;
 float ellipseX;
-int ellipseYStart = 375;
+int ellipseYStart = 500;
 boolean [] whatQuiz = {false, false, false, false, false, false, false, false, false, false};
 int [] correctAnswers = {1, 2, 0, 0, 1, 2, 1, 2, 0, 1};
 int quizIndex;
@@ -71,8 +71,10 @@ int scaleFactor = 1;
 
 void setup() {
 
+
 //size(540, 970);
 fullScreen();
+
 
 press = new SoundFile(this, "beep.mp3");
 
