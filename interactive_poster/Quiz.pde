@@ -33,8 +33,10 @@ class Quiz {
   String [] questions = loadStrings("questions.txt"); //Questions from the textfile
 
   int score;
-  
-  boolean circleOn = false;//Should be used to show the score when you click the last answer
+
+  int circleClicked; //Should be used to show the score when you click the last answer
+  boolean circleOn = true;//Should be used to show the score when you click the last answer
+
   boolean circleChecked = true; //Used so you can't click and increase circleClicked infinetly
 
   //Next button variables
@@ -86,14 +88,14 @@ class Quiz {
 
     if (circleChecked) {
       for (int u = 0; u < 3; u++) {
-        if (isMouseClicked == true && dist(mouseX, mouseY, ellipseX, miniEllipseY[u]) < ellipseSize/2) {
-          circleOn = true;
+        if (mousePressed == true && dist(mouseX, mouseY, ellipseX, miniEllipseY[u]) < ellipseSize/2) {
+    //    circleClicked++;
           circleChecked = false;
+          if (circleOn) {
+            circleClicked++;
+            circleOn = false;
+          }
         }
-      }
-      if (circleOn) {
-        circleClicked++;
-        circleOn = false;
       }
     }
 
@@ -110,6 +112,7 @@ class Quiz {
     }//hitbox for next button so you can go to the next question. 
     if (outOfBounds == false && toggle == false && isMouseClicked == true && mouseX > rectX-rectSizeW/2 && mouseX < rectX + rectSizeW/2 && mouseY > rectY-rectSize/2 && mouseY < rectY + rectSize/2) { 
       quizIndex++;
+      circleOn = true;
       toggle = true; 
       correctAnswers[0] = correctAnswers[quizIndex]; //follows quizIndex for the correct answer.
       blankReset = false;
