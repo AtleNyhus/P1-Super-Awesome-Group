@@ -60,17 +60,23 @@ int quizIndex;
 float maxScroll [] = new float [numberOfPages];
 boolean isSliding;
 //Next button variables
-float rectX = 800;
-float rectY = 500;
+
+
 float rectSize = 50;
+
+ float buttonCurve = 80;
 
 int scaleFactor = 1;
 
 void setup() {
   fullScreen();
 
-  //fullScreen();
-  backButton = new Button(100, 100, buttonR, buttonR);
+
+
+  float backButtonX = width * 0.1; 
+  float backButtonY = height * 0.05;
+  backButton = new Button(100, 100, buttonR, buttonR, 0);
+
 
   StartPage = loadImage("startpage.png");
   StartPage.resize(width, height);
@@ -80,8 +86,7 @@ void setup() {
     pictures[i].resize(pictures[i].width/scaleFactor, pictures[i].height/scaleFactor);
   }
   pictures[1].resize(width, height);
-  // pictures[1].resize(width, pictures[1].height);
-  //pictures[2].resize(width, pictures[1].height);
+  maxScroll[1] = height;
 
 
   for (int i = 0; i < numberOfPages; i++) {
@@ -89,6 +94,9 @@ void setup() {
   }
   test = loadImage("Page2.png");
   page[3] = new Page(0, 0, test);
+
+float rectX = width * 0.7;
+float rectY = height * 0.5;
 
   for (int i = 0; i < quiz.length; i++) {
     quiz [i] = new Quiz(ellipseX, ellipseYStart, ellipseSize, rectX, rectY, rectSize);
@@ -112,6 +120,8 @@ void setup() {
   buttonR2[1] = height * 0.197;
   buttonR2[2] = height * 0.193;
   buttonR2[3] = height * 0.197;
+  
+
 }
 
 void draw() {
@@ -135,7 +145,10 @@ void draw() {
   for (int i = 0; i < page.length; i++) {
     if (pages[i]) {
       page[i].showPage();
+      page[i].slider();
+      backButton.home();
       page[i].slider(maxScroll[i]);
+
 
       if ( i == 3) {
         for (int j = 0; j < quiz.length; j++) {
@@ -177,13 +190,6 @@ void draw() {
       isSliding = true;
     }
   }
-
-
-
-
-
-  //This creates a button that sets the booleans to deload all pages and load the startpage
-  if (!show) backButton.home();
 
   //resets isMouseClicked
   isMouseClicked = false;
