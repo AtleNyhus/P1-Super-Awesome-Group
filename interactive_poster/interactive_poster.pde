@@ -57,13 +57,14 @@ int ellipseYStart = 500;
 boolean [] whatQuiz = {false, false, false, false, false, false, false, false, false, false};
 int [] correctAnswers = {1, 2, 0, 0, 1, 2, 1, 2, 0, 1};
 int quizIndex;
-
+int circleClicked; //Should be used to show the score when you click the last answer
 float maxScroll [] = new float [numberOfPages];
 boolean isSliding;
+boolean resetQuiz = false;
 //Next button variables
 
 
-float rectSize = 50;
+float rectSize = 80;
 
 float buttonCurve = 80;
 
@@ -72,14 +73,14 @@ int scaleFactor = 1;
 void setup() {
 
 
-//size(540, 970);
-fullScreen();
+  size(540, 970);
+  //fullScreen();
 
 
-press = new SoundFile(this, "beep.mp3");
+  press = new SoundFile(this, "beep.mp3");
 
 
-ellipseX = width * 0.1157;
+  ellipseX = width * 0.1157;
   //float backButtonX = width * 0.1; 
   //float backButtonY = height * 0.05;
   backButton = new Button(100, 100);
@@ -104,7 +105,7 @@ ellipseX = width * 0.1157;
 
 
   float rectX = width * 0.7;
-  float rectY = height * 0.5;
+  float rectY = height * 0.7;
 
 
   for (int i = 0; i < quiz.length; i++) {
@@ -142,7 +143,7 @@ void draw() {
   }
 
   if (show) { //Textbox gets shown on the background only and switches startpage to true when turned off. Dissapears after first use.
-    boxShow();
+    boxShow();//delete this. It is not used. The Textbox_class aswell.
   }
 
 
@@ -177,9 +178,17 @@ void draw() {
     }
   }
 
+/*
+  if (startpage) {//When you click the backbutton startpage is true again therefore quizIndex = 0 and the quiz resets
+    quizIndex= 0;
+    circleClicked = 0; //Work in progress! Goal is to reset the quiz
+    resetQuiz = true;
+  } else {
+    resetQuiz = false;
+  }
+*/
 
-
-
+  //Backbutton. If you click in the backbuttons boundaries you go to the startpage again
   if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
     for (int i = 0; i < num; i++) {
       pages[i] = false;
