@@ -59,7 +59,7 @@ int numberOfPages = 4;
 Page [] page = new Page [numberOfPages];
 
 //Quiz
-Quiz [] quiz = new Quiz [10];
+Quiz [] quiz = new Quiz [6];
 int ellipseSize = 25;
 float ellipseX = 62.5;
 int ellipseYStart = 375;
@@ -96,7 +96,7 @@ void setup() {
   test = loadImage("Page2.png");
 page[3] = new Page(0,0, test);
 
-float rectX = width * 0.7;
+float rectX = width * 0.9;
 float rectY = height * 0.5;
 
   for (int i = 0; i < quiz.length; i++) {
