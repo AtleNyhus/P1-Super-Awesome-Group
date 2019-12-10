@@ -72,7 +72,7 @@ int scaleFactor = 2;
 void setup() {
 
 size(540, 970);
-  fullScreen();
+  //fullScreen();
 
 press = new SoundFile(this, "beep.mp3");
 
