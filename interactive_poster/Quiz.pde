@@ -19,7 +19,7 @@ class Quiz {
   boolean blankReset = true; //Resets the quiz page back so there is no black circles
   boolean stopScore = true; //Made so you cannot just spam the same button to get infinite points
   boolean outOfBounds = false; //So the array does not go over its capacity
-  
+
 
   String [] answers = loadStrings("answers.txt"); //Pulls text from a textfile and loads each line into an array
   String [] questions = loadStrings("questions.txt"); //Questions from the textfile
@@ -47,6 +47,7 @@ class Quiz {
 
     //The clickable circles for answers
     for (int i = ellipseYStart; i < endPoint; i = i + incrementDown) { //Draws empty circles
+      strokeWeight(1);
       ellipse(ellipseX, i, ellipseSize, ellipseSize);
     }
 
@@ -84,7 +85,6 @@ class Quiz {
       correctAnswers[0] = correctAnswers[quizIndex]; //follows quizIndex for the correct answer.
       blankReset = false;
       stopScore = true;
-      
     }
 
     if (quizIndex >= 9) {
@@ -140,6 +140,7 @@ class Quiz {
     //Depending on which circle gets clicked on there is draw another on top and not the others.
     for (int i = 0; i < circleChecker.length; i++) { 
       if (circleChecker [i] && blankReset == true) {
+
         fill(255, 0, 0); //The circle is red and is left there or overwritten by the green circle further on line 154.
         ellipse(ellipseX, miniEllipseY[i], ellipseSize/1.5, ellipseSize/1.5);
       } else {
@@ -166,11 +167,11 @@ class Quiz {
   }
   /*
   void nextQuiz() { //Is not used in the programme
-    if (isMouseClicked && toggle == false) { //If mouse is clicked the loop gets deloaded and quizIndex is incremented by 1, which is put into whatQuiz that controls which quiz question is on.
-      for (int i = 0; i < whatQuiz.length; i++) { //Deloads quizpages first.
-        whatQuiz[i] = false;
-      }
-      whatQuiz[quizIndex] = true;
-    }
-  }*/
+   if (isMouseClicked && toggle == false) { //If mouse is clicked the loop gets deloaded and quizIndex is incremented by 1, which is put into whatQuiz that controls which quiz question is on.
+   for (int i = 0; i < whatQuiz.length; i++) { //Deloads quizpages first.
+   whatQuiz[i] = false;
+   }
+   whatQuiz[quizIndex] = true;
+   }
+   }*/
 }

@@ -1,6 +1,4 @@
 
-import processing.sound.*;
-
 PImage test;
 PImage StartPage;
 
@@ -54,7 +52,7 @@ int ellipseSize = 25;
 float ellipseX = 62.5;
 int ellipseYStart = 375;
 boolean [] whatQuiz = {false, false, false, false, false, false, false, false, false, false};
-int [] correctAnswers = {2, 1, 0, 2, 0, 1, 1, 2, 0, 1};
+int [] correctAnswers = {1, 2, 0, 0, 1, 2, 1, 2, 0, 1};
 int quizIndex;
 
 float maxScroll [] = new float [numberOfPages];
@@ -64,7 +62,7 @@ boolean isSliding;
 
 float rectSize = 50;
 
- float buttonCurve = 80;
+float buttonCurve = 80;
 
 int scaleFactor = 1;
 
@@ -73,30 +71,30 @@ void setup() {
 
 
 
-  float backButtonX = width * 0.1; 
-  float backButtonY = height * 0.05;
-  backButton = new Button(100, 100, buttonR, buttonR, 0);
+  //float backButtonX = width * 0.1; 
+  //float backButtonY = height * 0.05;
+  backButton = new Button(100, 100);
 
 
   StartPage = loadImage("startpage.png");
   StartPage.resize(width, height);
-  for (int i = 0; i < pages.length - 1; i++) {
+  for (int i = 0; i < pages.length; i++) {
     pictures[i] = loadImage("Page"+i+".png");
     maxScroll[i] = pictures[i].height/scaleFactor;
     pictures[i].resize(pictures[i].width/scaleFactor, pictures[i].height/scaleFactor);
   }
   pictures[1].resize(width, height);
+  pictures[3].resize(width, height);
   maxScroll[1] = height;
+  maxScroll[3] = height;
 
 
   for (int i = 0; i < numberOfPages; i++) {
     page[i] = new Page(0, 0, pictures[i]);
   }
-  test = loadImage("Page2.png");
-  page[3] = new Page(0, 0, test);
 
-float rectX = width * 0.7;
-float rectY = height * 0.5;
+  float rectX = width * 0.7;
+  float rectY = height * 0.5;
 
   for (int i = 0; i < quiz.length; i++) {
     quiz [i] = new Quiz(ellipseX, ellipseYStart, ellipseSize, rectX, rectY, rectSize);
@@ -120,8 +118,6 @@ float rectY = height * 0.5;
   buttonR2[1] = height * 0.197;
   buttonR2[2] = height * 0.193;
   buttonR2[3] = height * 0.197;
-  
-
 }
 
 void draw() {
@@ -145,8 +141,6 @@ void draw() {
   for (int i = 0; i < page.length; i++) {
     if (pages[i]) {
       page[i].showPage();
-      page[i].slider();
-      backButton.home();
       page[i].slider(maxScroll[i]);
 
 
@@ -190,6 +184,8 @@ void draw() {
       isSliding = true;
     }
   }
+
+  if (!startpage) backButton.home();
 
   //resets isMouseClicked
   isMouseClicked = false;
