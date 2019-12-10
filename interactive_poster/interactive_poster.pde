@@ -50,9 +50,9 @@ int numberOfPages = 4;
 Page [] page = new Page [numberOfPages];
 
 //Quiz
-Quiz [] quiz = new Quiz [10];
-int ellipseSize = 25;
-float ellipseX = 62.5;
+Quiz [] quiz = new Quiz [6];
+int ellipseSize = 50;
+float ellipseX;
 int ellipseYStart = 375;
 boolean [] whatQuiz = {false, false, false, false, false, false, false, false, false, false};
 int [] correctAnswers = {1, 2, 0, 0, 1, 2, 1, 2, 0, 1};
@@ -67,13 +67,17 @@ float rectSize = 50;
 
 float buttonCurve = 80;
 
-int scaleFactor = 1;
+int scaleFactor = 2;
 
 void setup() {
+
+size(540, 970);
   fullScreen();
 
 press = new SoundFile(this, "beep.mp3");
 
+
+ellipseX = width * 0.1157;
   //float backButtonX = width * 0.1; 
   //float backButtonY = height * 0.05;
   backButton = new Button(100, 100);
@@ -96,8 +100,10 @@ press = new SoundFile(this, "beep.mp3");
     page[i] = new Page(0, 0, pictures[i]);
   }
 
+
   float rectX = width * 0.7;
   float rectY = height * 0.5;
+
 
   for (int i = 0; i < quiz.length; i++) {
     quiz [i] = new Quiz(ellipseX, ellipseYStart, ellipseSize, rectX, rectY, rectSize);

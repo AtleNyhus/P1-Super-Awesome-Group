@@ -1,6 +1,6 @@
 class Quiz {
 
-  Boolean [] circleChecker = {false, false, false}; 
+  boolean [] circleChecker = {false, false, false}; 
 
   int ellipseYStart;
   int incrementDown = 120;
@@ -9,10 +9,18 @@ class Quiz {
   int multiplyer = 2;
   int triple = 3; //Used to shift the answers array to the next spot. Changed by quizIndex.
   int textSize = 20;
-  int questionBoxX = 540;
-  int questionBoxY = 200;
-  int questionBoxW = 980;
-  int questionBoxH = 240;
+  float questionBoxX = width * 0.115;
+  float questionBoxY = height * 0.1443;
+  int questionBoxW = 450;
+  int questionBoxH = 200;
+  float scoreBoxX = width*0.53;
+  float scoreBoxY = height*0.42;
+  int scoreBoxW = 100;
+  int scoreBoxH = 50;
+  float scoreTextX = width*0.55;
+  float scoreTextY = height*0.45;
+  float questionTextX = width *0.54;
+  float questionTextY = height * 0.247;
 
   float [] miniEllipseY = new float [3];
   boolean toggle = true; //toggle used to turn off that you can click on more than 1 answer.
@@ -21,10 +29,14 @@ class Quiz {
   boolean outOfBounds = false; //So the array does not go over its capacity
 
 
+
   String [] answers = loadStrings("answers.txt"); //Pulls text from a textfile and loads each line into an array
   String [] questions = loadStrings("questions.txt"); //Questions from the textfile
 
   int score;
+  int circleClicked; //Should be used to show the score when you click the last answer
+  boolean circleOn = false;//Should be used to show the score when you click the last answer
+  boolean circleChecked = true; //Used so you can't click and increase circleClicked infinetly
 
   //Next button variables
   float rectX, rectY, rectSize;
@@ -52,13 +64,14 @@ class Quiz {
     }
 
     //Score box
-    if (quizIndex >= 9) { 
-      rect(340, 4*110, 100, 50); //fix magic numbers
+    if (circleClicked == quiz.length) { 
+      rect(scoreBoxX, scoreBoxY, scoreBoxW, scoreBoxH); //fix magic numbers
       fill(0);
       textSize(textSize);
-      text("score " + score, 300, 4*110);
+      text("score " + score, scoreTextX, scoreTextY);
     }
   }
+
 
 
   void Interact() { //Checks what button you click on. Turns off when you click within one of the buttons. Sets 1 of the buttons to be true.
@@ -72,6 +85,20 @@ class Quiz {
       }
     }
 
+    if (circleChecked) {
+      for (int u = 0; u < 3; u++) {
+        if (isMouseClicked == true && dist(mouseX, mouseY, ellipseX, miniEllipseY[u]) < ellipseSize/2) {
+          circleOn = true;
+          circleChecked = false;
+        } else {
+          circleOn = false;
+        }
+        if (circleOn) {
+          circleClicked++;
+        }
+      }
+    }
+    println(circleClicked);
 
     //Creates next button
     if (outOfBounds == false) { //does not show if the array is out of bounds
@@ -85,56 +112,28 @@ class Quiz {
       correctAnswers[0] = correctAnswers[quizIndex]; //follows quizIndex for the correct answer.
       blankReset = false;
       stopScore = true;
+      circleChecked = true;
     }
 
-    if (quizIndex >= 9) {
+
+    if (quizIndex >= quiz.length-1) {
       outOfBounds = true;
     }
 
     for (int i = 0; i < quiz.length; i++) { //When quizIndex is equals to i it shows the text bellow. The loop goes from 0 to 9
       if (quizIndex == i) { //The answers are written in the programme
-        //fill(255); turn on for white text
+        fill(255); 
         textSize(textSize);
         text(answers[0+(quizIndex*triple)], ellipseX+incrementLeft, ellipseYStart);//answers[0] gets added with a multiplication of quizIndex times 3. So quizIndex = 1*3 changes answers[0] to answers[3]
         text(answers[1+(quizIndex*triple)], ellipseX+incrementLeft, ellipseYStart+incrementDown);
         text(answers[2+(quizIndex*triple)], ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
         fill(0);
-        textSize(textSize+5);
-        text(questions[0+quizIndex], questionBoxX-400, questionBoxY);
+        textSize(textSize);
+        rectMode(CENTER); //Fixes bug where the last question is not displayed properly
+        text(questions[quizIndex], questionTextX, questionTextY, 400, 100);
       }
     }
 
-    /*
-    if (quizIndex == 1) {
-     text(answer1, ellipseX+incrementLeft, ellipseYStart);
-     text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
-     text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
-     }
-     
-     if (quizIndex == 2) {
-     text(answer1, ellipseX+incrementLeft, ellipseYStart);
-     text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
-     text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
-     }
-     
-     if (quizIndex == 3) {
-     text(answer1, ellipseX+incrementLeft, ellipseYStart);
-     text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
-     text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
-     }
-     
-     if (quizIndex == 4) {
-     text(answer1, ellipseX+incrementLeft, ellipseYStart);
-     text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
-     text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
-     }
-     
-     if (quizIndex == 5) {
-     text(answer1, ellipseX+incrementLeft, ellipseYStart);
-     text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
-     text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
-     }
-     */
 
 
     //Depending on which circle gets clicked on there is draw another on top and not the others.
@@ -147,6 +146,7 @@ class Quiz {
         circleChecker[i] = false;
       }
     }
+
 
     //The black ellipse positions. Corresponds to the other circles y-positions.
     for (int i = 0; i < 3; i++) { 
