@@ -64,7 +64,7 @@ class Quiz {
     }
 
     //Score box
-    if (circleClicked == 6) { 
+    if (circleClicked == quiz.length) { 
       rect(scoreBoxX, scoreBoxY, scoreBoxW, scoreBoxH); //fix magic numbers
       fill(0);
       textSize(textSize);
