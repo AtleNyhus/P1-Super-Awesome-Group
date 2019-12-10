@@ -90,14 +90,14 @@ class Quiz {
         if (isMouseClicked == true && dist(mouseX, mouseY, ellipseX, miniEllipseY[u]) < ellipseSize/2) {
           circleOn = true;
           circleChecked = false;
-        } else {
-          circleOn = false;
-        }
-        if (circleOn) {
-          circleClicked++;
         }
       }
+      if (circleOn) {
+        circleClicked++;
+        circleOn = false;
+      }
     }
+
     println(circleClicked);
 
     //Creates next button
