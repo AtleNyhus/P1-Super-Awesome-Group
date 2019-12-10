@@ -29,12 +29,14 @@ class Quiz {
   boolean outOfBounds = false; //So the array does not go over its capacity
 
 
+
   String [] answers = loadStrings("answers.txt"); //Pulls text from a textfile and loads each line into an array
   String [] questions = loadStrings("questions.txt"); //Questions from the textfile
 
   int score;
   int circleClicked; //Should be used to show the score when you click the last answer
   boolean circleOn = false;//Should be used to show the score when you click the last answer
+  boolean circleChecked = true; //Used so you can't click and increase circleClicked infinetly
 
   //Next button variables
   float rectX, rectY, rectSize;
@@ -62,7 +64,7 @@ class Quiz {
     }
 
     //Score box
-    if (quizIndex >= quiz.length-1) { 
+    if (circleClicked == 6) { 
       rect(scoreBoxX, scoreBoxY, scoreBoxW, scoreBoxH); //fix magic numbers
       fill(0);
       textSize(textSize);
@@ -83,8 +85,20 @@ class Quiz {
       }
     }
 
-
-
+    if (circleChecked) {
+      for (int u = 0; u < 3; u++) {
+        if (isMouseClicked == true && dist(mouseX, mouseY, ellipseX, miniEllipseY[u]) < ellipseSize/2) {
+          circleOn = true;
+          circleChecked = false;
+        } else {
+          circleOn = false;
+        }
+        if (circleOn) {
+          circleClicked++;
+        }
+      }
+    }
+    println(circleClicked);
 
     //Creates next button
     if (outOfBounds == false) { //does not show if the array is out of bounds
@@ -98,6 +112,7 @@ class Quiz {
       correctAnswers[0] = correctAnswers[quizIndex]; //follows quizIndex for the correct answer.
       blankReset = false;
       stopScore = true;
+      circleChecked = true;
     }
 
 
@@ -114,6 +129,7 @@ class Quiz {
         text(answers[2+(quizIndex*triple)], ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
         fill(0);
         textSize(textSize);
+        rectMode(CENTER); //Fixes bug where the last question is not displayed properly
         text(questions[quizIndex], questionTextX, questionTextY, 400, 100);
       }
     }
