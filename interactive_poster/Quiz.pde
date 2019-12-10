@@ -5,22 +5,22 @@ class Quiz {
   int ellipseYStart;
   int incrementDown = 120;
   int incrementLeft = 50;
-  int endPoint = 675;
+  int endPoint = 800;
   int multiplyer = 2;
   int triple = 3; //Used to shift the answers array to the next spot. Changed by quizIndex.
-  int textSize = 20;
+  int textSize = 30;
   float questionBoxX = width * 0.115;
-  float questionBoxY = height * 0.1443;
-  int questionBoxW = 450;
+  float questionBoxY = 150;
+  int questionBoxW = 800;
   int questionBoxH = 200;
   float scoreBoxX = width*0.53;
-  float scoreBoxY = height*0.42;
-  int scoreBoxW = 100;
+  float scoreBoxY = 830;
+  int scoreBoxW = 150;
   int scoreBoxH = 50;
   float scoreTextX = width*0.55;
   float scoreTextY = height*0.45;
-  float questionTextX = width *0.54;
-  float questionTextY = height * 0.247;
+  float questionTextX = 550;
+  float questionTextY = 250;
 
   float [] miniEllipseY = new float [3];
   boolean toggle = true; //toggle used to turn off that you can click on more than 1 answer.
@@ -102,9 +102,12 @@ class Quiz {
 
     //Creates next button
     if (outOfBounds == false) { //does not show if the array is out of bounds
-      fill(255, 0, 0);
       rectMode(CENTER);
-      rect(rectX, rectY, rectSize, rectSize);
+      fill(255);
+      rect(rectX, rectY, rectSize*3, rectSize, 50);
+      fill(0);
+      textSize(30);
+      text("Næste", rectX-45, rectY+3);
     }//hitbox for next button so you can go to the next question. 
     if (outOfBounds == false && toggle == false && isMouseClicked == true && mouseX > rectX-rectSize/2 && mouseX < rectX + rectSize/2 && mouseY > rectY-rectSize/2 && mouseY < rectY + rectSize/2) { 
       quizIndex++;
@@ -128,9 +131,9 @@ class Quiz {
         text(answers[1+(quizIndex*triple)], ellipseX+incrementLeft, ellipseYStart+incrementDown);
         text(answers[2+(quizIndex*triple)], ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
         fill(0);
-        textSize(textSize);
+        textSize(35);
         rectMode(CENTER); //Fixes bug where the last question is not displayed properly
-        text(questions[quizIndex], questionTextX, questionTextY, 400, 100);
+        text(questions[quizIndex], questionTextX, questionTextY, 800, 100);
       }
     }
 
