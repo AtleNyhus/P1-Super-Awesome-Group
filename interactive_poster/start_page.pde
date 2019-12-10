@@ -24,6 +24,7 @@ void startPage () {
   //Controls the Booleans for which page should be shown
   for (int i = 0; i < pages.length; i++) {
     if (isPressed[i]) {
+      press.play();
       pages[i] = true;
       startpage = false;
       if( i == 3) whatQuiz[0] = true; //This is what makes the code in line 102 work.
