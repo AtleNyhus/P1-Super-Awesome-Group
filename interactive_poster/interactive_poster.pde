@@ -64,13 +64,15 @@ float rectX = 800;
 float rectY = 500;
 float rectSize = 50;
 
+ float buttonCurve = 80;
+
 int scaleFactor = 1;
 
 void setup() {
   fullScreen();
 
   //fullScreen();
-  backButton = new Button(100, 100, buttonR, buttonR);
+  backButton = new Button(100, 100, buttonR, buttonR, 0);
 
   StartPage = loadImage("startpage.png");
   StartPage.resize(width, height);
@@ -80,8 +82,7 @@ void setup() {
     pictures[i].resize(pictures[i].width/scaleFactor, pictures[i].height/scaleFactor);
   }
   pictures[1].resize(width, height);
-  // pictures[1].resize(width, pictures[1].height);
-  //pictures[2].resize(width, pictures[1].height);
+  maxScroll[1] = height;
 
 
   for (int i = 0; i < numberOfPages; i++) {
@@ -112,6 +113,8 @@ void setup() {
   buttonR2[1] = height * 0.197;
   buttonR2[2] = height * 0.193;
   buttonR2[3] = height * 0.197;
+  
+
 }
 
 void draw() {

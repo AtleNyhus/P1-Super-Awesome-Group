@@ -3,15 +3,17 @@ class Button {
   float y;
   float r;
   float r1;
+  float curve;
   PImage image;
   //color c;
   // boolean active;
 
-  Button(float x_, float y_, float r_, float r1_) {
+  Button(float x_, float y_, float r_, float r1_, float curve_) {
     x = x_;
     y = y_;
     r = r_;
     r1 = r1_;
+    curve = curve_;
   }
   /*
   Button(float x_, float y_, float r_, float r1_, PImage image_) {
@@ -26,7 +28,7 @@ class Button {
     noStroke();
     fill(c);
     rectMode(CORNER);
-    rect(x, y, r, r1);
+    rect(x, y, r, r1, curve);
   }
 
   void home () {
