@@ -67,12 +67,14 @@ float rectSize = 50;
 
 float buttonCurve = 80;
 
-int scaleFactor = 2;
+int scaleFactor = 1;
 
 void setup() {
 
-size(1080, 1920);
-  //fullScreen();
+
+//size(540, 970);
+fullScreen();
+
 
 press = new SoundFile(this, "beep.mp3");
 
