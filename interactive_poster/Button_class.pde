@@ -44,6 +44,17 @@ class Button {
     }
   }
 
+void house(float houseX, float houseY) { 
+  noFill();                                //Makes it transparent
+  stroke(textWhite);                       //Makes the outline white
+  strokeWeight(3);                         //Thickness of the outline
+  float houseW = 22;                       //Width of the house
+  float houseH = 16;                       //Height of the house
+  float roof = 4;
+  float roofH = 12;                        //Height of the roof
+  rectMode(CORNER);                        
+  rect(houseX, houseY, houseW, houseH);    //Draws the house
+  triangle(houseX-roof, houseY, houseX+houseW+roof, houseY, houseX+houseW/2, houseY-roofH);  //Draws the roof
 
   /*
   void display() {
