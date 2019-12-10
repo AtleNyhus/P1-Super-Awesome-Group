@@ -8,7 +8,7 @@ int y2 = y1-430;
 int size = 50;
 
 int edge = 50;
-boolean show = true; //Boolean used to toggle whether the box should be shown or not
+boolean show = false; //Boolean used to toggle whether the box should be shown or not
 
 PImage introText;
 

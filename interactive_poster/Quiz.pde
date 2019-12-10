@@ -43,7 +43,7 @@ class Quiz {
     //The question box
     stroke(0);
     fill(255);
-    rect(questionBoxX, questionBoxY, questionBoxW, questionBoxH); //fix magic numbers
+    rect(questionBoxX, questionBoxY, questionBoxW, questionBoxH); 
 
     //The clickable circles for answers
     for (int i = ellipseYStart; i < endPoint; i = i + incrementDown) { //Draws empty circles

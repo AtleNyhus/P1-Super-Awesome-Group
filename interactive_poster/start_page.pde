@@ -1,10 +1,10 @@
 void startPage () {
   
-  image(pictures[0], 0, 0);
+  image(StartPage, 0, 0);
   // creates the four buttons, and ads a hitbox to them.
   for (int i = 0; i < myButtons.length; i++) 
   {
-    myButtons[i] = new Button(buttonX[i], buttonY[i], buttonR1[i], buttonR2[i]);
+    myButtons[i] = new Button(buttonX[i], buttonY[i], buttonR1[i], buttonR2[i], buttonCurve);
     //myButtons[i].active = true; //This sets all the "myButtons" to the true state (means they can be displayed)
     //if ( mousePressed && dist(mouseX, mouseY, myButtons[i].x, myButtons[i].y) < myButtons[i].r/2) 
     if(mousePressed && mouseX > myButtons[i].x && mouseX < myButtons[i].x + myButtons[i].r && mouseY > myButtons[i].y && mouseY < myButtons[i].y + myButtons[i].r1)
