@@ -17,10 +17,9 @@ class Quiz {
   float scoreBoxY = 830;
   int scoreBoxW = 150;
   int scoreBoxH = 50;
-  float scoreTextX = width*0.55;
-  float scoreTextY = height*0.45;
   float questionTextX = 550;
   float questionTextY = 250;
+  int rectSizeW = 240;
 
   float [] miniEllipseY = new float [3];
   boolean toggle = true; //toggle used to turn off that you can click on more than 1 answer.
@@ -34,8 +33,10 @@ class Quiz {
   String [] questions = loadStrings("questions.txt"); //Questions from the textfile
 
   int score;
+
   int circleClicked; //Should be used to show the score when you click the last answer
   boolean circleOn = true;//Should be used to show the score when you click the last answer
+
   boolean circleChecked = true; //Used so you can't click and increase circleClicked infinetly
 
   //Next button variables
@@ -65,10 +66,10 @@ class Quiz {
 
     //Score box
     if (circleClicked == quiz.length) { 
-      rect(scoreBoxX, scoreBoxY, scoreBoxW, scoreBoxH); //fix magic numbers
+      rect(scoreBoxX, scoreBoxY, scoreBoxW, scoreBoxH, 50); //fix magic numbers
       fill(0);
       textSize(textSize);
-      text("score " + score, scoreTextX, scoreTextY);
+      text("score " + score +"/6", scoreBoxX, scoreBoxY+30);
     }
   }
 
@@ -98,18 +99,18 @@ class Quiz {
       }
     }
 
-    println(circleClicked);
+   
 
     //Creates next button
     if (outOfBounds == false) { //does not show if the array is out of bounds
       rectMode(CENTER);
       fill(255);
-      rect(rectX, rectY, rectSize*3, rectSize, 50);
+      rect(rectX, rectY, rectSizeW, rectSize, 50);
       fill(0);
       textSize(30);
-      text("Næste", rectX-45, rectY+3);
+      text("Naeste", rectX-45, rectY+3);
     }//hitbox for next button so you can go to the next question. 
-    if (outOfBounds == false && toggle == false && isMouseClicked == true && mouseX > rectX-rectSize/2 && mouseX < rectX + rectSize/2 && mouseY > rectY-rectSize/2 && mouseY < rectY + rectSize/2) { 
+    if (outOfBounds == false && toggle == false && isMouseClicked == true && mouseX > rectX-rectSizeW/2 && mouseX < rectX + rectSizeW/2 && mouseY > rectY-rectSize/2 && mouseY < rectY + rectSize/2) { 
       quizIndex++;
       circleOn = true;
       toggle = true; 
@@ -122,6 +123,8 @@ class Quiz {
 
     if (quizIndex >= quiz.length-1) {
       outOfBounds = true;
+    } else {
+      outOfBounds = false;
     }
 
     for (int i = 0; i < quiz.length; i++) { //When quizIndex is equals to i it shows the text bellow. The loop goes from 0 to 9
@@ -142,7 +145,7 @@ class Quiz {
 
     //Depending on which circle gets clicked on there is draw another on top and not the others.
     for (int i = 0; i < circleChecker.length; i++) { 
-      if (circleChecker [i] && blankReset == true) {
+      if (circleChecker [i] && blankReset == true && resetQuiz == false) {
 
         fill(255, 0, 0); //The circle is red and is left there or overwritten by the green circle further on line 154.
         ellipse(ellipseX, miniEllipseY[i], ellipseSize/1.5, ellipseSize/1.5);
