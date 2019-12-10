@@ -1,3 +1,6 @@
+import processing.sound.*;
+
+SoundFile press; 
 
 PImage test;
 PImage StartPage;
@@ -67,8 +70,12 @@ float buttonCurve = 80;
 int scaleFactor = 2;
 
 void setup() {
-  //fullScreen();
+
 size(540, 970);
+  fullScreen();
+
+press = new SoundFile(this, "beep.mp3");
+
 
 ellipseX = width * 0.1157;
   //float backButtonX = width * 0.1; 
