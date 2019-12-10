@@ -49,6 +49,7 @@ class Quiz {
 
     //The clickable circles for answers
     for (int i = ellipseYStart; i < endPoint; i = i + incrementDown) { //Draws empty circles
+      strokeWeight(1);
       ellipse(ellipseX, i, ellipseSize, ellipseSize);
     }
 
@@ -76,20 +77,21 @@ class Quiz {
   
 
 
- 
-  //Creates next button
-  if (outOfBounds == false) { //does not show if the array is out of bounds
-    fill(255, 0, 0);
-    rectMode(CENTER);
-    rect(rectX, rectY, rectSize, rectSize);
-  }//hitbox for next button so you can go to the next question. 
-  if (outOfBounds == false && toggle == false && isMouseClicked == true && mouseX > rectX-rectSize/2 && mouseX < rectX + rectSize/2 && mouseY > rectY-rectSize/2 && mouseY < rectY + rectSize/2) { 
-    quizIndex++;
-    toggle = true; 
-    correctAnswers[0] = correctAnswers[quizIndex]; //follows quizIndex for the correct answer.
-    blankReset = false;
-    stopScore = true;
-  }
+
+    //Creates next button
+    if (outOfBounds == false) { //does not show if the array is out of bounds
+      fill(255, 0, 0);
+      rectMode(CENTER);
+      rect(rectX, rectY, rectSize, rectSize);
+    }//hitbox for next button so you can go to the next question. 
+    if (outOfBounds == false && toggle == false && isMouseClicked == true && mouseX > rectX-rectSize/2 && mouseX < rectX + rectSize/2 && mouseY > rectY-rectSize/2 && mouseY < rectY + rectSize/2) { 
+      quizIndex++;
+      toggle = true; 
+      correctAnswers[0] = correctAnswers[quizIndex]; //follows quizIndex for the correct answer.
+      blankReset = false;
+      stopScore = true;
+    }
+
 
   if (quizIndex >= quiz.length-1) {
     outOfBounds = true;
@@ -110,44 +112,48 @@ class Quiz {
 
   /*
     if (quizIndex == 1) {
-   text(answer1, ellipseX+incrementLeft, ellipseYStart);
-   text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
-   text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
-   }
-   
-   if (quizIndex == 2) {
-   text(answer1, ellipseX+incrementLeft, ellipseYStart);
-   text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
-   text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
-   }
-   
-   if (quizIndex == 3) {
-   text(answer1, ellipseX+incrementLeft, ellipseYStart);
-   text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
-   text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
-   }
-   
-   if (quizIndex == 4) {
-   text(answer1, ellipseX+incrementLeft, ellipseYStart);
-   text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
-   text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
-   }
-   
-   if (quizIndex == 5) {
-   text(answer1, ellipseX+incrementLeft, ellipseYStart);
-   text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
-   text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
-   }
-   */
+
+     text(answer1, ellipseX+incrementLeft, ellipseYStart);
+     text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
+     text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
+     }
+     
+     if (quizIndex == 2) {
+     text(answer1, ellipseX+incrementLeft, ellipseYStart);
+     text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
+     text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
+     }
+     
+     if (quizIndex == 3) {
+     text(answer1, ellipseX+incrementLeft, ellipseYStart);
+     text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
+     text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
+     }
+     
+     if (quizIndex == 4) {
+     text(answer1, ellipseX+incrementLeft, ellipseYStart);
+     text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
+     text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
+     }
+     
+     if (quizIndex == 5) {
+     text(answer1, ellipseX+incrementLeft, ellipseYStart);
+     text(answer2, ellipseX+incrementLeft, ellipseYStart+incrementDown);
+     text(answer3, ellipseX+incrementLeft, ellipseYStart+incrementDown*multiplyer);
+     }
+     */
 
 
-  //Depending on which circle gets clicked on there is draw another on top and not the others.
-  for (int i = 0; i < circleChecker.length; i++) { 
-    if (circleChecker [i] && blankReset == true) {
-      fill(255, 0, 0); //The circle is red and is left there or overwritten by the green circle further on line 154.
-      ellipse(ellipseX, miniEllipseY[i], ellipseSize/1.5, ellipseSize/1.5);
-    } else {
-      circleChecker[i] = false;
+    //Depending on which circle gets clicked on there is draw another on top and not the others.
+    for (int i = 0; i < circleChecker.length; i++) { 
+      if (circleChecker [i] && blankReset == true) {
+
+        fill(255, 0, 0); //The circle is red and is left there or overwritten by the green circle further on line 154.
+        ellipse(ellipseX, miniEllipseY[i], ellipseSize/1.5, ellipseSize/1.5);
+      } else {
+        circleChecker[i] = false;
+      }
+
     }
   }
 
@@ -170,11 +176,12 @@ void correct(int a) { //Gives +1 score if the right answer is pressed.
 }
 /*
   void nextQuiz() { //Is not used in the programme
- if (isMouseClicked && toggle == false) { //If mouse is clicked the loop gets deloaded and quizIndex is incremented by 1, which is put into whatQuiz that controls which quiz question is on.
- for (int i = 0; i < whatQuiz.length; i++) { //Deloads quizpages first.
- whatQuiz[i] = false;
- }
- whatQuiz[quizIndex] = true;
- }
- }*/
+   if (isMouseClicked && toggle == false) { //If mouse is clicked the loop gets deloaded and quizIndex is incremented by 1, which is put into whatQuiz that controls which quiz question is on.
+   for (int i = 0; i < whatQuiz.length; i++) { //Deloads quizpages first.
+   whatQuiz[i] = false;
+   }
+   whatQuiz[quizIndex] = true;
+   }
+   }*/
+
 }
