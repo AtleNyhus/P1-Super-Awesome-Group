@@ -29,8 +29,8 @@ class Button {
     rect(x, y, r, r1);
   }
 
-  void home () {
-    fill(255,0,0);
+  void home (color homeColor) {
+    fill(homeColor);
     rectMode(CENTER);
     rect(x, y, r, r1);
     if ( mousePressed && dist(mouseX, mouseY, this.x, this.y) < this.r/2) {
