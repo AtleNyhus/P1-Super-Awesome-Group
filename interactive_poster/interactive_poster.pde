@@ -48,8 +48,8 @@ Page [] page = new Page [numberOfPages];
 
 //Quiz
 Quiz [] quiz = new Quiz [6];
-int ellipseSize = 25;
-float ellipseX = 62.5;
+int ellipseSize = 50;
+float ellipseX;
 int ellipseYStart = 375;
 boolean [] whatQuiz = {false, false, false, false, false, false, false, false, false, false};
 int [] correctAnswers = {1, 2, 0, 0, 1, 2, 1, 2, 0, 1};
@@ -64,13 +64,13 @@ float rectSize = 50;
 
 float buttonCurve = 80;
 
-int scaleFactor = 1;
+int scaleFactor = 2;
 
 void setup() {
-  fullScreen();
+  //fullScreen();
+size(540, 970);
 
-
-
+ellipseX = width * 0.1157;
   //float backButtonX = width * 0.1; 
   //float backButtonY = height * 0.05;
   backButton = new Button(100, 100);
