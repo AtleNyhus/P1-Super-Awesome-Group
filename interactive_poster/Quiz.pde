@@ -1,5 +1,6 @@
 class Quiz {
 
+
   boolean [] circleChecker = {false, false, false}; 
 
   int ellipseYStart;
@@ -22,9 +23,8 @@ class Quiz {
   int rectSizeW = 240;
 
   float [] miniEllipseY = new float [3];
-  boolean toggle = true; //toggle used to turn off that you can click on more than 1 answer.
-  boolean blankReset = true; //Resets the quiz page back so there is no black circles
-  boolean stopScore = true; //Made so you cannot just spam the same button to get infinite points
+
+
   boolean outOfBounds = false; //So the array does not go over its capacity
 
 
@@ -32,12 +32,6 @@ class Quiz {
   String [] answers = loadStrings("answers.txt"); //Pulls text from a textfile and loads each line into an array
   String [] questions = loadStrings("questions.txt"); //Questions from the textfile
 
-  int score;
-
-  int circleClicked; //Should be used to show the score when you click the last answer
-  boolean circleOn = true;//Should be used to show the score when you click the last answer
-
-  boolean circleChecked = true; //Used so you can't click and increase circleClicked infinetly
 
   //Next button variables
   float rectX, rectY, rectSize;
@@ -89,17 +83,18 @@ class Quiz {
     if (circleChecked) {
       for (int u = 0; u < 3; u++) {
         if (mousePressed == true && dist(mouseX, mouseY, ellipseX, miniEllipseY[u]) < ellipseSize/2) {
-    //    circleClicked++;
+          circleClicked++;
           circleChecked = false;
-          if (circleOn) {
-            circleClicked++;
-            circleOn = false;
-          }
+          /*  if (circleOn) {
+           circleClicked++;
+           circleOn = false;
+           }
+           */
         }
       }
     }
 
-   
+
 
     //Creates next button
     if (outOfBounds == false) { //does not show if the array is out of bounds

@@ -42,7 +42,18 @@ Button [] myButtons = new Button [num];
 
 //initializes the button that takes us back to the startpage.
 Button backButton;
+float backButtonH = 150;
+float backButtonW = 150;
 Quiz NextButton;
+
+// Variables used to reset the quiz
+boolean circleOn = true;//Should be used to show the score when you click the last answer
+boolean toggle = true; //toggle used to turn off that you can click on more than 1 answer.
+boolean blankReset = true; //Resets the quiz page back so there is no black circles
+boolean stopScore = true; //Made so you cannot just spam the same button to get infinite points
+boolean circleChecked = true; //Used so you can't click and increase circleClicked infinetly
+int circleClicked; //Should be used to show the score when you click the last answer
+int score;
 
 Boolean backShow = true;
 
@@ -57,7 +68,7 @@ int ellipseYStart = 500;
 boolean [] whatQuiz = {false, false, false, false, false, false, false, false, false, false};
 int [] correctAnswers = {1, 2, 0, 0, 1, 2, 1, 2, 0, 1};
 int quizIndex;
-int circleClicked; //Should be used to show the score when you click the last answer
+
 float maxScroll [] = new float [numberOfPages];
 boolean isSliding;
 boolean resetQuiz = false;
@@ -68,7 +79,7 @@ float rectSize = 80;
 
 float buttonCurve = 80;
 
-int scaleFactor = 1;
+int scaleFactor = 2;
 
 void setup() {
 
@@ -83,7 +94,7 @@ void setup() {
   ellipseX = width * 0.1157;
   //float backButtonX = width * 0.1; 
   //float backButtonY = height * 0.05;
-  backButton = new Button(100, 100);
+  backButton = new Button(backButtonH, backButtonW);
 
 
   StartPage = loadImage("startpage.png");
@@ -178,24 +189,24 @@ void draw() {
     }
   }
 
-/*
+  /*
   if (startpage) {//When you click the backbutton startpage is true again therefore quizIndex = 0 and the quiz resets
-    quizIndex= 0;
-    circleClicked = 0; //Work in progress! Goal is to reset the quiz
-    resetQuiz = true;
-  } else {
-    resetQuiz = false;
-  }
-*/
-
+   quizIndex= 0;
+   circleClicked = 0; //Work in progress! Goal is to reset the quiz
+   resetQuiz = true;
+   } else {
+   resetQuiz = false;
+   }
+   */
+  /*
   //Backbutton. If you click in the backbuttons boundaries you go to the startpage again
-  if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
-    for (int i = 0; i < num; i++) {
-      pages[i] = false;
-    }
-    startpage = true;
-  }
-
+   if ( mousePressed && dist(mouseX, mouseY, backButton.x, backButton.y) < backButton.r/2) {
+   for (int i = 0; i < num; i++) {
+   pages[i] = false;
+   }
+   startpage = true;
+   }
+   */
 
   if (mousePressed) {
     // if the mouse is not pressed, they mousePos array is filled with the current positon

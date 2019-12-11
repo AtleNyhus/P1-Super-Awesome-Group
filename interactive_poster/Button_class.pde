@@ -47,7 +47,7 @@ class Button {
     strokeWeight(housestrokeWeight);                         //Thickness of the outline
     float houseW = 44;                       //Width of the house
     float houseH = 32;                       //Height of the house
-    float roof = 4;
+    float roof = 6;
     float roofH = 12;                        //Height of the roof
     rectMode(CORNER);                        
     rect(houseX, houseY, houseW, houseH);    //Draws the house
@@ -58,6 +58,18 @@ class Button {
         page[i].y = 0;
       }
       startpage = true;
+      quizIndex = 0;
+      circleOn = true;
+      toggle = true; 
+      correctAnswers[0] = correctAnswers[quizIndex]; 
+      blankReset = false;
+      stopScore = true;
+      circleChecked = true;
+      circleClicked = 0;
+      score = 0;
+      for (int i = 0; i < whatQuiz.length; i++) {
+        whatQuiz[i] = false;
+      }
     }
   }
 }
