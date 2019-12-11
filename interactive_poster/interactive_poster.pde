@@ -47,7 +47,6 @@ float backButtonW = 150;
 Quiz NextButton;
 
 // Variables used to reset the quiz
-boolean circleOn = true;//Should be used to show the score when you click the last answer
 boolean toggle = true; //toggle used to turn off that you can click on more than 1 answer.
 boolean blankReset = true; //Resets the quiz page back so there is no black circles
 boolean stopScore = true; //Made so you cannot just spam the same button to get infinite points

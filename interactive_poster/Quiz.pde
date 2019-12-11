@@ -101,7 +101,6 @@ class Quiz {
       text("Naeste", rectX-45, rectY+3);
     }//hitbox for next button so you can go to the next question. 
     if (outOfBounds == false && toggle == false && isMouseClicked == true && mouseX > rectX-rectSizeW/2 && mouseX < rectX + rectSizeW/2 && mouseY > rectY-rectSize/2 && mouseY < rectY + rectSize/2) { 
-      circleOn = true;
       toggle = true; 
       quizIndex++;
       correctAnswers[0] = correctAnswers[quizIndex]; //follows quizIndex for the correct answer.

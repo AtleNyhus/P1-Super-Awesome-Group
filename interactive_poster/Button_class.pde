@@ -59,7 +59,6 @@ class Button {
       }
       startpage = true;
       quizIndex = 0;
-      circleOn = true;
       toggle = true; 
       correctAnswers[0] = 1;
       blankReset = false;
