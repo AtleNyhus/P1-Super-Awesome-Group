@@ -85,11 +85,6 @@ class Quiz {
         if (mousePressed == true && dist(mouseX, mouseY, ellipseX, miniEllipseY[u]) < ellipseSize/2) {
           circleClicked++;
           circleChecked = false;
-          /*  if (circleOn) {
-           circleClicked++;
-           circleOn = false;
-           }
-           */
         }
       }
     }
@@ -106,9 +101,9 @@ class Quiz {
       text("Naeste", rectX-45, rectY+3);
     }//hitbox for next button so you can go to the next question. 
     if (outOfBounds == false && toggle == false && isMouseClicked == true && mouseX > rectX-rectSizeW/2 && mouseX < rectX + rectSizeW/2 && mouseY > rectY-rectSize/2 && mouseY < rectY + rectSize/2) { 
-      quizIndex++;
       circleOn = true;
       toggle = true; 
+      quizIndex++;
       correctAnswers[0] = correctAnswers[quizIndex]; //follows quizIndex for the correct answer.
       blankReset = false;
       stopScore = true;

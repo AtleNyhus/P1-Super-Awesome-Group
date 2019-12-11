@@ -61,7 +61,7 @@ class Button {
       quizIndex = 0;
       circleOn = true;
       toggle = true; 
-      correctAnswers[0] = correctAnswers[quizIndex]; 
+      correctAnswers[0] = 1;
       blankReset = false;
       stopScore = true;
       circleChecked = true;

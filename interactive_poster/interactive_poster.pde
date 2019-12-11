@@ -67,7 +67,8 @@ float ellipseX;
 int ellipseYStart = 500;
 boolean [] whatQuiz = {false, false, false, false, false, false, false, false, false, false};
 int [] correctAnswers = {1, 2, 0, 0, 1, 2, 1, 2, 0, 1};
-int quizIndex;
+int theCorrectAnswer = 1;
+int quizIndex = 0;
 
 float maxScroll [] = new float [numberOfPages];
 boolean isSliding;
@@ -168,13 +169,22 @@ void draw() {
 
 
       if ( i == 3) {
+        quiz[0].Body();
+        quiz[0].Interact();
         for (int j = 0; j < quiz.length; j++) {
-          if (whatQuiz[j]) { //Not sure why this is working
-            quiz[j].Body();
-            quiz[j].Interact();
-            quiz[j].correct(correctAnswers[j]);
+          if (whatQuiz[j]) {
+            quiz[0].correct(correctAnswers[j]);
           }
         }
+        /*
+        for (int j = 0; j < quiz.length; j++) {
+         if (whatQuiz[j]) { //Not sure why this is working
+         quiz[j].Body();
+         quiz[j].Interact();
+         quiz[j].correct(correctAnswers[j]);
+         }
+         } */
+        //}
       }
     }
   }
@@ -221,6 +231,8 @@ void draw() {
   //resets isMouseClicked
   isMouseClicked = false;
 }
+
+
 
 void mouseReleased () {
   isMouseClicked = true;
